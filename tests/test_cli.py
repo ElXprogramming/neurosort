@@ -69,3 +69,27 @@ def test_cli_scan_execute_and_history_and_undo(tmp_path: Path):
     assert "REVERTED" in undo_res.output
     # Original file restored to intake!
     assert test_doc.exists()
+
+
+def test_cli_undo_all(tmp_path: Path):
+    intake = tmp_path / "intake"
+    intake.mkdir()
+    doc1 = intake / "file1.txt"
+    doc2 = intake / "file2.txt"
+    doc1.write_text("File 1 content", encoding="utf-8")
+    doc2.write_text("File 2 content", encoding="utf-8")
+
+    cfg_file = tmp_path / "config.yaml"
+    cfg = get_default_config()
+    cfg.destination_root = tmp_path / "organized"
+    cfg.database_path = tmp_path / "ledger.db"
+    save_config(cfg, cfg_file)
+
+    runner.invoke(app, ["scan", str(intake), "--config", str(cfg_file)])
+    assert not doc1.exists()
+    assert not doc2.exists()
+
+    undo_all_res = runner.invoke(app, ["undo", "--all", "--config", str(cfg_file)])
+    assert undo_all_res.exit_code == 0
+    assert doc1.exists()
+    assert doc2.exists()

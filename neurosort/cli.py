@@ -266,6 +266,9 @@ def cmd_undo(
     tx_id: Optional[int] = typer.Option(
         None, "--id", "-i", help="Specific transaction ID to rollback."
     ),
+    undo_all: bool = typer.Option(
+        False, "--all", "-a", help="Reverse ALL previous active file movements in ledger."
+    ),
     config_file: Optional[Path] = typer.Option(
         None, "--config", "-c", help="Path to custom config.yaml"
     ),
@@ -279,6 +282,12 @@ def cmd_undo(
 
     if tx_id is not None:
         targets = [tx_id]
+    elif undo_all:
+        active_moves = ledger.get_last_active_moves(limit=100000)
+        if not active_moves:
+            console.print("[yellow]No active file movements found in ledger to undo.[/yellow]")
+            raise typer.Exit(0)
+        targets = [rec.id for rec in active_moves]
     else:
         active_moves = ledger.get_last_active_moves(limit=last_n)
         if not active_moves:
