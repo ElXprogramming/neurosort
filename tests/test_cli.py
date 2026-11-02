@@ -93,3 +93,13 @@ def test_cli_undo_all(tmp_path: Path):
     assert undo_all_res.exit_code == 0
     assert doc1.exists()
     assert doc2.exists()
+
+
+def test_cli_service_help():
+    res = runner.invoke(app, ["service", "--help"])
+    assert res.exit_code == 0
+    assert "Manage persistent background systemd service" in res.output
+    assert "install" in res.output
+    assert "status" in res.output
+    assert "logs" in res.output
+

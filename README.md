@@ -160,15 +160,36 @@ Classify, standardize names, and move files immediately:
 neurosort scan ~/Downloads
 ```
 
-### Start Background Daemon
+### Start Background Daemon (Interactive)
 Run the debounced filesystem watcher daemon in the foreground:
 ```bash
 neurosort start
 ```
-Run in background mode:
+
+### 🤖 24/7 Automated Background Service (Run on Boot / Login)
+Install and enable NeuroSort as a permanent background service on Linux with `systemd`:
 ```bash
-neurosort start --daemon
+# Install and activate background service immediately
+neurosort service install
+
+# Check service status anytime
+neurosort service status
+
+# Stream live real-time ingestion logs
+neurosort service logs -f
+
+# Restart or stop the service
+neurosort service restart
+neurosort service stop
+
+# Completely uninstall the service
+neurosort service uninstall
 ```
+> **Tip for Headless / SSH**: To keep the service running even when you are logged out or after a reboot without graphical login, run:
+> ```bash
+> loginctl enable-linger $USER
+> ```
+
 
 ### Launch Interactive Web Interface
 Start the local dashboard at `http://127.0.0.1:8765`:

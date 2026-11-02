@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import fnmatch
 from pathlib import Path
+import shutil
+import subprocess
 import sys
 import time
 from typing import Optional
@@ -410,6 +412,159 @@ def cmd_gui(
 ) -> None:
     """Alias for 'neurosort ui'."""
     cmd_ui(host=host, port=port, no_browser=no_browser, config_file=config_file)
+
+
+# -----------------------------------------------------------------------------
+# 🤖 24/7 BACKGROUND SYSTEMD SERVICE AUTOMATION
+# -----------------------------------------------------------------------------
+service_app = typer.Typer(
+    help="⚙️ Manage persistent background systemd service for 24/7 automated file sorting.",
+    no_args_is_help=True,
+)
+app.add_typer(service_app, name="service")
+
+
+def _get_systemd_user_dir() -> Path:
+    return Path.home() / ".config" / "systemd" / "user"
+
+
+def _get_neurosort_bin() -> Path:
+    which_bin = shutil.which("neurosort")
+    if which_bin:
+        return Path(which_bin).resolve()
+    venv_bin = Path(sys.executable).parent / "neurosort"
+    if venv_bin.exists():
+        return venv_bin.resolve()
+    return Path(sys.executable)
+
+
+@service_app.command("install")
+def cmd_service_install(
+    config_file: Optional[Path] = typer.Option(
+        None, "--config", "-c", help="Path to config.yaml"
+    ),
+    start_now: bool = typer.Option(
+        True, "--start/--no-start", help="Immediately start service after installation."
+    ),
+) -> None:
+    """Install and enable NeuroSort as a persistent systemd user service (starts automatically on login)."""
+    _print_banner()
+    if not shutil.which("systemctl"):
+        console.print("[bold red]Error: systemctl command not found. Systemd is required for user services.[/bold red]")
+        raise typer.Exit(1)
+
+    bin_path = _get_neurosort_bin()
+    cfg_path = (config_file or Path.cwd() / "config.yaml").resolve()
+    if not cfg_path.exists():
+        cfg_path = Path.home() / ".neurosort" / "config.yaml"
+
+    systemd_dir = _get_systemd_user_dir()
+    systemd_dir.mkdir(parents=True, exist_ok=True)
+    service_file = systemd_dir / "neurosort.service"
+
+    exec_cmd = f"{bin_path} start"
+    if cfg_path.exists():
+        exec_cmd += f" --config {cfg_path}"
+
+    service_content = f"""[Unit]
+Description=NeuroSort Automatic File Organization Daemon
+Documentation=https://github.com/ElXprogramming/neurosort
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={exec_cmd}
+WorkingDirectory={cfg_path.parent if cfg_path.exists() else Path.home()}
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
+"""
+    service_file.write_text(service_content, encoding="utf-8")
+    console.print(f"[green]✓ Wrote systemd service definition to:[/green] [cyan]{service_file}[/cyan]")
+
+    try:
+        subprocess.run(["systemctl", "--user", "daemon-reload"], check=True)
+        subprocess.run(["systemctl", "--user", "enable", "neurosort.service"], check=True)
+        if start_now:
+            subprocess.run(["systemctl", "--user", "restart", "neurosort.service"], check=True)
+            console.print("[bold green]✓ NeuroSort background service active & watching your folders![/bold green]")
+        else:
+            console.print("[green]✓ NeuroSort background service enabled.[/green]")
+    except subprocess.CalledProcessError as exc:
+        console.print(f"[bold red]Failed to configure systemd service:[/bold red] {exc}")
+        raise typer.Exit(1)
+
+    panel_text = (
+        "[bold cyan]NeuroSort is now automated 24/7 in the background![/bold cyan]\n\n"
+        "• [bold green]Continuous Ingestion:[/bold green] Automatically organizes files whenever you download.\n"
+        "• [bold green]Login Persistence:[/bold green] Automatically starts on boot/login.\n"
+        "• [bold green]Check Status:[/bold green] [bold cyan]neurosort service status[/bold cyan]\n"
+        "• [bold green]Stream Live Logs:[/bold green] [bold cyan]neurosort service logs -f[/bold cyan]\n"
+        "• [bold green]Stop Anytime:[/bold green] [bold cyan]neurosort service stop[/bold cyan]\n"
+        "• [bold green]Uninstall:[/bold green] [bold cyan]neurosort service uninstall[/bold cyan]"
+    )
+    console.print(Panel(panel_text, title="🤖 24/7 Automation Active", border_style="cyan"))
+
+
+@service_app.command("status")
+def cmd_service_status() -> None:
+    """Check the status of the background NeuroSort systemd service."""
+    if not shutil.which("systemctl"):
+        console.print("[bold red]Error: systemctl not available.[/bold red]")
+        raise typer.Exit(1)
+    subprocess.run(["systemctl", "--user", "status", "neurosort.service"])
+
+
+@service_app.command("logs")
+def cmd_service_logs(
+    lines: int = typer.Option(30, "--lines", "-n", help="Number of journal log lines to display."),
+    follow: bool = typer.Option(False, "--follow", "-f", help="Follow live output stream."),
+) -> None:
+    """View recent logs from the background NeuroSort daemon."""
+    if not shutil.which("journalctl"):
+        console.print("[bold red]Error: journalctl not available.[/bold red]")
+        raise typer.Exit(1)
+    cmd = ["journalctl", "--user", "-u", "neurosort.service", f"-n{lines}", "--no-pager"]
+    if follow:
+        cmd = ["journalctl", "--user", "-u", "neurosort.service", "-f"]
+    subprocess.run(cmd)
+
+
+@service_app.command("start")
+def cmd_service_start() -> None:
+    """Start the background NeuroSort systemd service."""
+    subprocess.run(["systemctl", "--user", "start", "neurosort.service"], check=True)
+    console.print("[bold green]✓ Started NeuroSort background service.[/bold green]")
+
+
+@service_app.command("stop")
+def cmd_service_stop() -> None:
+    """Stop the background NeuroSort systemd service."""
+    subprocess.run(["systemctl", "--user", "stop", "neurosort.service"], check=True)
+    console.print("[yellow]Stopped NeuroSort background service.[/yellow]")
+
+
+@service_app.command("restart")
+def cmd_service_restart() -> None:
+    """Restart the background NeuroSort systemd service."""
+    subprocess.run(["systemctl", "--user", "restart", "neurosort.service"], check=True)
+    console.print("[bold green]✓ Restarted NeuroSort background service.[/bold green]")
+
+
+@service_app.command("uninstall")
+def cmd_service_uninstall() -> None:
+    """Disable and remove the NeuroSort systemd user service."""
+    service_file = _get_systemd_user_dir() / "neurosort.service"
+    if shutil.which("systemctl"):
+        subprocess.run(["systemctl", "--user", "disable", "--now", "neurosort.service"], stderr=subprocess.DEVNULL)
+    if service_file.exists():
+        service_file.unlink()
+    if shutil.which("systemctl"):
+        subprocess.run(["systemctl", "--user", "daemon-reload"], stderr=subprocess.DEVNULL)
+    console.print("[bold yellow]✓ NeuroSort background service uninstalled cleanly.[/bold yellow]")
 
 
 if __name__ == "__main__":
