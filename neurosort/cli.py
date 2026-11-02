@@ -361,5 +361,47 @@ def cmd_history(
     console.print(table)
 
 
+@app.command("ui")
+def cmd_ui(
+    host: str = typer.Option("127.0.0.1", "--host", "-h", help="Bind host address."),
+    port: int = typer.Option(8765, "--port", "-p", help="Server port."),
+    no_browser: bool = typer.Option(
+        False, "--no-browser", help="Do not automatically open the default web browser."
+    ),
+    config_file: Optional[Path] = typer.Option(
+        None, "--config", "-c", help="Path to custom config.yaml"
+    ),
+) -> None:
+    """Launch the NeuroSort Local Interactive Web GUI Dashboard."""
+    _print_banner()
+    console.print(
+        f"[bold green]🚀 Starting NeuroSort Web GUI at:[/bold green] [cyan]http://{host}:{port}[/cyan]"
+    )
+    console.print("[dim]Press Ctrl+C to stop the GUI server.[/dim]\n")
+    from neurosort.server import start_server
+
+    start_server(
+        config_path=config_file,
+        host=host,
+        port=port,
+        open_browser=not no_browser,
+    )
+
+
+@app.command("gui", hidden=True)
+def cmd_gui(
+    host: str = typer.Option("127.0.0.1", "--host", "-h", help="Bind host address."),
+    port: int = typer.Option(8765, "--port", "-p", help="Server port."),
+    no_browser: bool = typer.Option(
+        False, "--no-browser", help="Do not automatically open the default web browser."
+    ),
+    config_file: Optional[Path] = typer.Option(
+        None, "--config", "-c", help="Path to custom config.yaml"
+    ),
+) -> None:
+    """Alias for 'neurosort ui'."""
+    cmd_ui(host=host, port=port, no_browser=no_browser, config_file=config_file)
+
+
 if __name__ == "__main__":
     app()

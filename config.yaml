@@ -1,105 +1,90 @@
-# NeuroSort Configuration File
-# ------------------------------
-# Auto-generated default configuration for automatic file organization.
-
-# Monitored intake directories with debouncing delays (seconds)
 watch_paths:
-  - path: "~/Downloads"
-    debounce_seconds: 5.0
-  - path: "~/Desktop/Inbox"
-    debounce_seconds: 5.0
-
-# Central organized destination directory
-destination_root: "~/Documents/Organized"
-
-# Rule precedence:
-# 1. Exact extension or glob overrides take immediate priority
-# 2. Semantic taxonomy clusters classify files based on extracted content & LLM reasoning
+- path: /home/eldion/Downloads
+  debounce_seconds: 5.0
+- path: /home/eldion/Desktop/Inbox
+  debounce_seconds: 5.0
+destination_root: /home/eldion/Documents/Organized
 rules_precedence:
   exact_overrides:
-    "*.iso": "Archives/ISO"
-    "*.dmg": "Installers/macOS"
-    "*.deb": "Installers/Linux"
-    "*.rpm": "Installers/Linux"
-    "*.torrent": "Downloads/Torrents"
-
+    '*.iso': Archives/ISO
+    '*.dmg': Installers/macOS
+    '*.deb': Installers/Linux
+    '*.rpm': Installers/Linux
+    '*.torrent': Downloads/Torrents
   taxonomy_clusters:
-    "Finance/Invoices":
-      - "invoice"
-      - "receipt"
-      - "billing"
-      - "tax"
-      - "statement"
-      - "w2"
-      - "1099"
-      - "payment"
-    "Health/Medical":
-      - "prescription"
-      - "medical"
-      - "lab_result"
-      - "vaccine"
-      - "doctor"
-      - "blood_test"
-    "Dev/Datasets":
-      - "dataset"
-      - "csv"
-      - "jsonl"
-      - "parquet"
-      - "benchmark"
-      - "corpus"
-    "Dev/SourceCode":
-      - "script"
-      - "source"
-      - "module"
-      - "python"
-      - "rust"
-      - "javascript"
-      - "typescript"
-      - "golang"
-    "Media/Wallpapers":
-      - "wallpaper"
-      - "background"
-      - "4k"
-      - "desktop"
-    "Media/Photos":
-      - "dcim"
-      - "camera"
-      - "photo"
-      - "portrait"
-    "Documents/Work":
-      - "report"
-      - "contract"
-      - "nda"
-      - "proposal"
-      - "resume"
-      - "cv"
-      - "presentation"
-
-# Renaming template variables: {date}, {category}, {entity}, {original_title}, {ext}
-renaming_template: "{date}_{category}_{entity}_{original_title}.{ext}"
-
-# Intelligence layer settings
+    Finance/Invoices:
+    - invoice
+    - receipt
+    - billing
+    - tax
+    - statement
+    - w2
+    - '1099'
+    - payment
+    - expense
+    Health/Medical:
+    - prescription
+    - medical
+    - lab_result
+    - vaccine
+    - doctor
+    - blood_test
+    - clinic
+    - hospital
+    Dev/Datasets:
+    - dataset
+    - csv
+    - jsonl
+    - parquet
+    - benchmark
+    - corpus
+    - training_data
+    Dev/SourceCode:
+    - script
+    - source
+    - module
+    - python
+    - rust
+    - javascript
+    - typescript
+    - golang
+    Media/Wallpapers:
+    - wallpaper
+    - background
+    - 4k
+    - desktop
+    - ultrawide
+    Media/Photos:
+    - dcim
+    - camera
+    - photo
+    - portrait
+    - snapshot
+    Documents/Work:
+    - report
+    - contract
+    - nda
+    - proposal
+    - resume
+    - curriculum_vitae
+    - cv
+    - presentation
+renaming_template: '{date}_{category}_{entity}_{original_title}.{ext}'
 ai_provider:
-  provider: "ollama"
-  model: "llama3.2"
+  provider: ollama
+  model: llama3.2
   temperature: 0.0
-  base_url: "http://localhost:11434"
+  base_url: http://localhost:11434
   api_key: null
   timeout_seconds: 30.0
   fallback_to_rules: true
-
-# Safety options
 dry_run: false
-
-# Temporary or incomplete file patterns to ignore
 ignore_patterns:
-  - "*.crdownload"
-  - "*.tmp"
-  - "~*"
-  - ".*"
-  - "*.part"
-  - "*.swp"
-  - "*.download"
-
-# Transaction ledger database path
-database_path: "~/.neurosort/ledger.db"
+- '*.crdownload'
+- '*.tmp'
+- ~*
+- .*
+- '*.part'
+- '*.swp'
+- '*.download'
+database_path: /home/eldion/.neurosort/ledger.db
