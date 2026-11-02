@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuroSort 🧠📁 | Intelligent Local-First File Daemon</title>
-  <meta name="description" content="Modern, local-first, safe, and intelligent automatic file management system powered by Ollama, Watchdog, and SQLite." />
+  <title>NeuroSort 🧠📁 | Intelligent Local-First File Daemon & Future Sight</title>
+  <meta name="description" content="Modern, local-first, safe, and intelligent automatic file management system with Live File System Browser and Future Sight Preview Sandbox." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -41,7 +41,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glow-cyan { box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25); }
-    /* Custom scrollbar */
+    .glow-purple { box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.25); }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
@@ -71,10 +71,10 @@
       </div>
 
       <nav class="flex items-center space-x-3">
-        <a href="#live-staging" class="text-xs sm:text-sm text-cyan-300 font-semibold hover:text-white transition flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Live Scanner
+        <a href="#fs-explorer" class="text-xs sm:text-sm text-purple-300 font-semibold hover:text-white transition flex items-center gap-1.5 bg-purple-950/40 px-2.5 py-1 rounded-lg border border-purple-800/40">
+          <span>🔮</span> Future Sight Explorer
         </a>
-        <a href="#playground" class="text-xs sm:text-sm text-slate-300 hover:text-white transition">Simulator</a>
+        <a href="#live-staging" class="text-xs sm:text-sm text-cyan-300 hover:text-white transition">Batch Scanner</a>
         <a href="#ledger" class="text-xs sm:text-sm text-slate-300 hover:text-white transition">Ledger & Undo</a>
         <a href="https://github.com/ElXprogramming/neurosort" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -103,44 +103,226 @@
   </div>
 
   <!-- Hero Section -->
-  <section class="relative overflow-hidden py-12 sm:py-16 border-b border-slate-800/60">
+  <section class="relative overflow-hidden py-8 sm:py-12 border-b border-slate-800/60">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-dark-950 to-dark-950 -z-10"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-        Zero-Data-Loss • Local-First LLM Architecture
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-3">
+        <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+        Zero-Risk Future Sight Preview • Free File System Browser
       </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
-        Automatic, semantic file organization that <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-sky-400 bg-clip-text text-transparent">never loses a byte.</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+        Browse your real files and <span class="bg-gradient-to-r from-purple-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent">project their future state</span> without moving anything.
       </h1>
-      <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
-        Monitors intake directories with watchdog, extracts content & EXIF metadata, classifies files via Ollama (Llama 3.2 / Qwen), standardizes filenames, and guarantees instant rollback via SQLite audit trails.
+      <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+        Navigate your local directories freely. Click any file to see exactly how NeuroSort will semantically classify and rename it in real-time — completely non-destructive so you never have to undo.
       </p>
+    </div>
+  </section>
 
-      <!-- Fast Action Row -->
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <a href="#live-staging" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/25 transition flex items-center gap-2">
-          <span>🔍</span> Scan & Organize Local Files
-        </a>
-        <a href="#playground" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition">
-          ⚡ Try Interactive Simulator
-        </a>
+  <!-- ========================================================================= -->
+  <!-- 🔮 FEATURE 1: FILE SYSTEM BROWSER & FUTURE SIGHT PROJECTION SANDBOX -->
+  <!-- ========================================================================= -->
+  <section id="fs-explorer" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          <span>🔮</span> File System Browser & Future Sight Sandbox
+        </h2>
+        <p class="text-xs text-slate-400 mt-0.5">
+          Pure read-only preview projection. Select any file from your filesystem to project its destination and standardized name risk-free.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <span class="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 flex items-center gap-1.5 font-medium">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+          Non-Destructive Sandbox
+        </span>
+      </div>
+    </div>
+
+    <!-- Explorer Navigation & Quick-Jump Toolbar -->
+    <div class="glass-card p-4 rounded-xl border border-slate-800 mb-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        
+        <!-- Breadcrumb / Location Bar -->
+        <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto py-1">
+          <button onclick="navigateUp()" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700 flex items-center gap-1" title="Go up one folder">
+            <span>⬆</span> Up
+          </button>
+          <div id="breadcrumbsContainer" class="flex items-center gap-1 text-xs font-mono">
+            <!-- Breadcrumbs injected dynamically -->
+            <span class="text-slate-400">Loading path...</span>
+          </div>
+        </div>
+
+        <!-- Quick Jump Buttons -->
+        <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto text-xs">
+          <span class="text-slate-500 text-[11px] hidden md:inline">Quick Jump:</span>
+          <button onclick="browseDirectory('~/Downloads')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 whitespace-nowrap">📥 Downloads</button>
+          <button onclick="browseDirectory('~/Desktop')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 whitespace-nowrap">💻 Desktop</button>
+          <button onclick="browseDirectory('~/Documents')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 whitespace-nowrap">📄 Documents</button>
+          <button onclick="browseDirectory('~')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 whitespace-nowrap">🏠 Home</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dual-Pane Layout: File Tree (Left) vs Future Sight Projection (Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- LEFT PANE: Real File System Browser -->
+      <div class="lg:col-span-5 glass-card p-4 rounded-2xl flex flex-col h-[650px] border border-slate-800">
+        
+        <!-- Search & Filter Filter -->
+        <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800">
+          <div class="relative w-full">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-slate-500 text-xs">🔍</span>
+            <input id="fsSearchFilter" oninput="filterFsItems()" type="text" placeholder="Filter files in this folder..." class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs font-mono text-slate-200 focus:outline-none focus:border-cyan-500" />
+          </div>
+          <button onclick="browseDirectory(currentFsPath)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs border border-slate-700" title="Refresh">
+            🔄
+          </button>
+        </div>
+
+        <!-- Files & Folders Scrollable List -->
+        <div id="fsItemList" class="flex-1 overflow-y-auto space-y-1 pr-1">
+          <!-- Dynamically populated items -->
+          <div class="text-center py-12 text-slate-500 text-xs font-sans">
+            <span class="animate-spin inline-block mr-1">⚙️</span> Loading file system...
+          </div>
+        </div>
+
+        <!-- Directory Summary Footer -->
+        <div class="pt-3 mt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+          <span id="fsItemCountBadge">0 items</span>
+          <span class="text-purple-400 flex items-center gap-1">
+            <span>👆</span> Click any file to project
+          </span>
+        </div>
+      </div>
+
+      <!-- RIGHT PANE: Future Sight Projection Sandbox -->
+      <div class="lg:col-span-7 glass-card p-6 rounded-2xl flex flex-col justify-between h-[650px] border border-purple-500/30 glow-purple overflow-y-auto">
+        
+        <div>
+          <!-- Future Sight Header -->
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🔮</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-300">Future Sight Projection</span>
+            </div>
+            <div id="projectionConfidenceBadge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              Select a file to inspect
+            </div>
+          </div>
+
+          <!-- Non-Destructive Banner -->
+          <div class="mb-4 p-2.5 rounded-xl bg-purple-950/30 border border-purple-800/40 text-xs text-purple-200 flex items-start gap-2">
+            <span class="text-sm">🛡️</span>
+            <div>
+              <strong>Read-Only Projection Sandbox:</strong> No files are modified or moved. You can freely explore the future organized state of your system with zero risk.
+            </div>
+          </div>
+
+          <!-- Transformation Projection Cards -->
+          <div class="space-y-4">
+            
+            <!-- BEFORE (Current State) -->
+            <div class="bg-slate-900/90 rounded-xl p-3.5 border border-slate-800">
+              <div class="flex items-center justify-between text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> CURRENT RAW FILE</span>
+                <span id="projOriginalMeta" class="text-slate-400 font-mono text-[11px]">-- KB • --</span>
+              </div>
+              <div id="projOriginalName" class="font-mono text-xs text-slate-200 font-semibold break-all">
+                (Click any file on the left to project its future organization)
+              </div>
+              <div id="projOriginalPath" class="font-mono text-[11px] text-slate-500 break-all mt-1">
+                --
+              </div>
+              <div class="mt-2 pt-2 border-t border-slate-800/60">
+                <div class="text-[10px] text-slate-400 uppercase tracking-wider">Extracted Content Snippet:</div>
+                <div id="projSnippet" class="text-xs font-mono text-slate-300 bg-slate-950/80 p-2 rounded mt-1 max-h-20 overflow-y-auto border border-slate-800">
+                  No file selected.
+                </div>
+              </div>
+            </div>
+
+            <!-- ARROW SEPARATOR -->
+            <div class="flex items-center justify-center -my-2 text-purple-400 text-sm font-bold">
+              <span>▼ PROJECTED FUTURE TAXONOMY STATE ▼</span>
+            </div>
+
+            <!-- AFTER (Projected Future State) -->
+            <div class="bg-slate-900/90 rounded-xl p-3.5 border border-purple-500/30">
+              <div class="flex items-center justify-between text-[10px] uppercase font-bold text-purple-300 tracking-wider mb-2">
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-purple-400"></span> PROJECTED DESTINATION</span>
+                <span id="projCategoryBadge" class="px-2 py-0.5 rounded bg-purple-900/40 text-purple-300 border border-purple-700/50 text-[10px]">Work</span>
+              </div>
+
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-slate-400">Standardized Target Filename:</div>
+                <div id="projStandardizedName" class="font-mono text-xs font-bold text-emerald-300 bg-slate-950/80 p-2 rounded mt-1 break-all border border-slate-800">
+                  --
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <div class="text-[10px] uppercase tracking-wider text-slate-400">Target Taxonomy Directory:</div>
+                <div id="projTargetFolder" class="font-mono text-xs font-semibold text-cyan-300 bg-slate-950/80 p-2 rounded mt-1 break-all border border-slate-800">
+                  📁 ~/Documents/Organized/--
+                </div>
+              </div>
+
+              <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <div class="text-[10px] uppercase tracking-wider text-slate-400">Detected Entity:</div>
+                  <div id="projEntity" class="font-mono text-[11px] text-slate-200 mt-0.5">--</div>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase tracking-wider text-slate-400">Semantic Tags:</div>
+                  <div id="projTags" class="flex gap-1 flex-wrap mt-0.5">
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">--</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <div class="text-[10px] uppercase tracking-wider text-slate-400">Semantic Classification Reasoning:</div>
+                <div id="projReasoning" class="text-xs text-slate-300 italic mt-0.5">
+                  --
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Optional User Action Trigger (Only if user explicitly wants to commit) -->
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+          <span class="text-[11px] text-slate-500">Preview Projection Mode (No changes made)</span>
+          <button id="commitSingleBtn" onclick="commitProjectedMove()" class="hidden px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs transition shadow-md shadow-purple-600/30 flex items-center gap-1.5">
+            <span>✨</span> Apply This Move
+          </button>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- LIVE DIRECTORY SCANNER & STAGING AREA -->
-  <section id="live-staging" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- ========================================================================= -->
+  <!-- 📁 FEATURE 2: BATCH SCANNER & STAGING AREA -->
+  <!-- ========================================================================= -->
+  <section id="live-staging" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
     <div class="glass-card p-6 rounded-2xl border border-cyan-500/30 glow-cyan">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xl">📁</span>
-            <h2 class="text-xl font-bold text-white tracking-tight">Interactive Directory Scanner & Staging Area</h2>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">GUI Review</span>
+            <span class="text-xl">📋</span>
+            <h2 class="text-xl font-bold text-white tracking-tight">Batch Directory Scanner & Staging Area</h2>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Review & Execute</span>
           </div>
           <p class="text-xs text-slate-400 mt-1">
-            Scan any directory, review classifications with confidence scores, fine-tune target folders or names, and organize safely.
+            Scan an entire folder, filter by category, and organize in bulk with transaction audit tracking.
           </p>
         </div>
 
@@ -165,6 +347,7 @@
             <option value="Datasets">Dev / Datasets</option>
             <option value="Photos">Media / Photos</option>
             <option value="Wallpapers">Media / Wallpapers</option>
+            <option value="Torrents">Downloads / Torrents</option>
             <option value="Unsorted">Unsorted</option>
           </select>
 
@@ -181,7 +364,7 @@
 
       <!-- Staged Files Table Container -->
       <div class="rounded-xl border border-slate-800 overflow-hidden bg-slate-950/60">
-        <div class="overflow-x-auto max-h-[500px]">
+        <div class="overflow-x-auto max-h-[400px]">
           <table class="w-full text-left text-xs">
             <thead class="bg-slate-900 text-slate-400 uppercase tracking-wider text-[10px] sticky top-0 z-10 border-b border-slate-800">
               <tr>
@@ -216,180 +399,22 @@
     </div>
   </section>
 
-  <!-- Interactive Live Simulator Section -->
-  <section id="playground" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+  <!-- ========================================================================= -->
+  <!-- 📜 FEATURE 3: SQLITE AUDIT LEDGER & INSTANT UNDO -->
+  <!-- ========================================================================= -->
+  <section id="ledger" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
       <div>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-2">
-          <span>⚡</span> Live Semantic Sorting Simulator
-        </h2>
-        <p class="text-sm text-slate-400 mt-1">
-          Pick a sample file or provide your own text snippet to simulate NeuroSort extraction, LLM prompt generation, and target folder resolution.
-        </p>
-      </div>
-      <div class="mt-4 md:mt-0 flex items-center gap-2 text-xs text-slate-400">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-        Interactive Client Simulation
-      </div>
-    </div>
-
-    <!-- Simulator Workspace Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      
-      <!-- Input Panel -->
-      <div class="lg:col-span-5 glass-card p-6 rounded-2xl flex flex-col justify-between">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Preset Sample Files</label>
-          <div class="grid grid-cols-2 gap-2 mb-4">
-            <button onclick="loadSample('invoice')" class="px-3 py-2 rounded-lg text-left text-xs bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/70 transition flex items-center gap-2">
-              <span>📄</span>
-              <div>
-                <div class="font-medium text-slate-200">Stripe Invoice</div>
-                <div class="text-[10px] text-slate-400">PDF • Finance</div>
-              </div>
-            </button>
-            <button onclick="loadSample('medical')" class="px-3 py-2 rounded-lg text-left text-xs bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/70 transition flex items-center gap-2">
-              <span>🩺</span>
-              <div>
-                <div class="font-medium text-slate-200">Blood Test Lab</div>
-                <div class="text-[10px] text-slate-400">PDF • Health</div>
-              </div>
-            </button>
-            <button onclick="loadSample('photo')" class="px-3 py-2 rounded-lg text-left text-xs bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/70 transition flex items-center gap-2">
-              <span>📷</span>
-              <div>
-                <div class="font-medium text-slate-200">DCIM Sunset</div>
-                <div class="text-[10px] text-slate-400">JPG • EXIF Media</div>
-              </div>
-            </button>
-            <button onclick="loadSample('dataset')" class="px-3 py-2 rounded-lg text-left text-xs bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/70 transition flex items-center gap-2">
-              <span>📊</span>
-              <div>
-                <div class="font-medium text-slate-200">ML Training Data</div>
-                <div class="text-[10px] text-slate-400">CSV • Dev Dataset</div>
-              </div>
-            </button>
-          </div>
-
-          <div class="space-y-3">
-            <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Incoming File Name</label>
-              <input id="inputFileName" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-cyan-300 focus:outline-none focus:border-cyan-500" value="invoice_stripe_march_2024.pdf" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Simulated Extracted Content Snippet</label>
-              <textarea id="inputTextSnippet" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs font-mono text-slate-200 focus:outline-none focus:border-cyan-500">INVOICE #INV-88214
-Issuer: Stripe Payments Inc.
-Billed To: Eldion Software Engineering
-Date: 2024-03-15
-Total Due: $249.00 USD
-Payment Status: PAID via Credit Card (ending 4242)</textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Renaming Template</label>
-              <input id="inputTemplate" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-amber-300 focus:outline-none focus:border-cyan-500" value="{date}_{category}_{entity}_{original_title}.{ext}" />
-              <p class="text-[10px] text-slate-500 mt-1">Variables: {date}, {category}, {entity}, {original_title}, {ext}</p>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="runSimulation()" class="mt-4 w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition shadow-md shadow-cyan-500/20 flex items-center justify-center gap-2">
-          <span>⚙️</span> Classify & Standardize File
-        </button>
-      </div>
-
-      <!-- Output Panel -->
-      <div class="lg:col-span-7 space-y-4">
-        
-        <!-- Live Result Card -->
-        <div class="glass-card p-6 rounded-2xl border border-cyan-500/30 glow-cyan">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Organization Result
-            </span>
-            <span id="outputConfidence" class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-              Confidence: 0.98
-            </span>
-          </div>
-
-          <div class="space-y-4">
-            <div>
-              <div class="text-[11px] uppercase tracking-wider text-slate-400">Resolved Target Directory</div>
-              <div id="outputFolder" class="mt-1 font-mono text-sm text-cyan-300 font-semibold bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-800 flex items-center gap-2">
-                📁 ~/Documents/Organized/Finance/Invoices/
-              </div>
-            </div>
-
-            <div>
-              <div class="text-[11px] uppercase tracking-wider text-slate-400">Standardized Target Filename</div>
-              <div id="outputName" class="mt-1 font-mono text-sm text-emerald-300 font-bold bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-800 flex items-center gap-2">
-                📄 2024-03-15_invoices_stripe_invoice-stripe-march-2024.pdf
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <div class="text-[11px] uppercase tracking-wider text-slate-400">Extracted Entity</div>
-                <div id="outputEntity" class="mt-1 font-mono text-xs text-slate-200 bg-slate-900/50 px-2.5 py-1.5 rounded-md">
-                  stripe
-                </div>
-              </div>
-              <div>
-                <div class="text-[11px] uppercase tracking-wider text-slate-400">Applied Tags</div>
-                <div id="outputTags" class="mt-1 flex gap-1.5 flex-wrap">
-                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">invoice</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">billing</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">tax</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div class="text-[11px] uppercase tracking-wider text-slate-400">Semantic Reasoning</div>
-              <p id="outputReasoning" class="mt-1 text-xs text-slate-300 italic">
-                "Identified payment invoice from Stripe with exact billing date and dollar amounts."
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Structured LLM Schema Response View -->
-        <div class="glass-card p-4 rounded-xl">
-          <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
-            <span class="font-semibold uppercase tracking-wider text-slate-400">Structured JSON Output (Ollama Schema)</span>
-            <span class="text-[11px] font-mono text-cyan-400">format="json"</span>
-          </div>
-          <pre id="outputJson" class="bg-slate-950 p-3 rounded-lg text-xs font-mono text-slate-300 overflow-x-auto border border-slate-800">{
-  "target_folder": "Finance/Invoices",
-  "category": "Invoices",
-  "entity": "stripe",
-  "standardized_name": "2024-03-15_invoices_stripe_invoice-stripe-march-2024.pdf",
-  "confidence": 0.98,
-  "reasoning": "Identified payment invoice from Stripe with exact billing date and dollar amounts.",
-  "tags": ["invoice", "billing", "tax"]
-}</pre>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive SQLite Audit Ledger & Undo Section -->
-  <section id="ledger" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
-      <div>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
           <span>📜</span> SQLite Audit Ledger & Instant Undo
         </h2>
-        <p class="text-sm text-slate-400 mt-1">
+        <p class="text-xs text-slate-400 mt-1">
           Every file movement is logged in SQLite with SHA-256 hashes. Click "Revert Operation" to reverse file movements in real-time.
         </p>
       </div>
       <div class="mt-4 md:mt-0 flex gap-2">
         <button onclick="refreshHistoryFromAPI()" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-cyan-300 border border-slate-700 flex items-center gap-1">
-          <span>🔄</span> Refresh
+          <span>🔄</span> Refresh History
         </button>
       </div>
     </div>
@@ -430,13 +455,170 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
     </div>
   </footer>
 
-  <!-- Interactive JavaScript Logic -->
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: File System Browser & Future Sight Projection Logic -->
+  <!-- ========================================================================= -->
   <script>
     let isLocalServer = false;
+    let currentFsPath = "~/Downloads";
+    let currentFsItems = { directories: [], files: [] };
+    let currentSelectedFile = null;
+    let currentProjection = null;
+
     let stagedFiles = [];
     let selectedFileIndices = new Set();
 
-    // Check if connected to NeuroSort local API
+    // Virtual filesystem for Cloud/Vercel demonstration mode with user's actual files
+    const virtualFS = {
+      "~": {
+        directories: [
+          { name: "Downloads", path: "~/Downloads", modified: "2026-11-02 20:30" },
+          { name: "Documents", path: "~/Documents", modified: "2026-11-02 18:00" },
+          { name: "Desktop", path: "~/Desktop", modified: "2026-11-01 14:15" },
+          { name: "Pictures", path: "~/Pictures", modified: "2026-10-25 09:20" }
+        ],
+        files: [
+          { name: "My_Timetable.png", path: "~/My_Timetable.png", size_bytes: 420000, size_formatted: "410.2 KB", extension: ".png", modified: "2026-03-16 11:00" }
+        ]
+      },
+      "~/Downloads": {
+        directories: [
+          { name: "Coursework_KK35403", path: "~/Downloads/Coursework_KK35403", modified: "2026-07-07 10:00" },
+          { name: "FYP_Submissions", path: "~/Downloads/FYP_Submissions", modified: "2026-06-28 16:40" }
+        ],
+        files: [
+          { name: "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", path: "~/Downloads/FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", size_bytes: 1420500, size_formatted: "1.4 MB", extension: ".pdf", modified: "2026-06-23 14:30" },
+          { name: "KK35403 Mobile Apps Development - Week 8.pdf", path: "~/Downloads/KK35403 Mobile Apps Development - Week 8.pdf", size_bytes: 3200000, size_formatted: "3.1 MB", extension: ".pdf", modified: "2026-07-07 09:15" },
+          { name: "BI23110190 Eldion Ryan Project Summary(1).docx", path: "~/Downloads/BI23110190 Eldion Ryan Project Summary(1).docx", size_bytes: 84000, size_formatted: "82.0 KB", extension: ".docx", modified: "2026-03-17 11:20" },
+          { name: "Ej3nAliSeries_archive.torrent", path: "~/Downloads/Ej3nAliSeries_archive.torrent", size_bytes: 15400, size_formatted: "15.0 KB", extension: ".torrent", modified: "2026-09-24 18:45" },
+          { name: "SULAM Kampung Gentisan Financial Summary 2.pdf", path: "~/Downloads/SULAM Kampung Gentisan Financial Summary 2.pdf", size_bytes: 412000, size_formatted: "402.3 KB", extension: ".pdf", modified: "2026-06-21 15:10" },
+          { name: "ChatGPT Image Oct 1, 2026, 01_53_49 AM.png", path: "~/Downloads/ChatGPT Image Oct 1, 2026, 01_53_49 AM.png", size_bytes: 2840000, size_formatted: "2.7 MB", extension: ".png", modified: "2026-10-01 01:53" },
+          { name: "Food Tracking & Nearby Eats Survey (3).csv", path: "~/Downloads/Food Tracking & Nearby Eats Survey (3).csv", size_bytes: 98000, size_formatted: "95.7 KB", extension: ".csv", modified: "2026-06-24 16:30" },
+          { name: "Daily Menu Code Documentation - 29 June.pdf", path: "~/Downloads/Daily Menu Code Documentation - 29 June.pdf", size_bytes: 610000, size_formatted: "595.7 KB", extension: ".pdf", modified: "2026-06-29 10:24" },
+          { name: "KK35603 - Topic 2 - Fundamental Test Process.pdf", path: "~/Downloads/KK35603 - Topic 2 - Fundamental Test Process.pdf", size_bytes: 1850000, size_formatted: "1.8 MB", extension: ".pdf", modified: "2026-05-19 14:00" },
+          { name: "RHBDANAHAZEEM2025.pdf", path: "~/Downloads/RHBDANAHAZEEM2025.pdf", size_bytes: 750000, size_formatted: "732.4 KB", extension: ".pdf", modified: "2026-10-23 09:50" }
+        ]
+      },
+      "~/Downloads/Coursework_KK35403": {
+        directories: [],
+        files: [
+          { name: "KK35403 Kotlin Coding Notes.pdf", path: "~/Downloads/Coursework_KK35403/KK35403 Kotlin Coding Notes.pdf", size_bytes: 1120000, size_formatted: "1.1 MB", extension: ".pdf", modified: "2026-07-07 10:15" },
+          { name: "Lab Test Mobile App Dev.pdf", path: "~/Downloads/Coursework_KK35403/Lab Test Mobile App Dev.pdf", size_bytes: 540000, size_formatted: "527.3 KB", extension: ".pdf", modified: "2026-05-03 14:10" }
+        ]
+      },
+      "~/Downloads/FYP_Submissions": {
+        directories: [],
+        files: [
+          { name: "Actual Final Draft FYP BI23110190.pdf", path: "~/Downloads/FYP_Submissions/Actual Final Draft FYP BI23110190.pdf", size_bytes: 4200000, size_formatted: "4.0 MB", extension: ".pdf", modified: "2026-06-28 17:00" }
+        ]
+      }
+    };
+
+    // Virtual projections for demo
+    const virtualProjections = {
+      "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf": {
+        category: "Work",
+        target_folder: "Documents/Work",
+        standardized_name: "2026-06-23_work_fyp_FYP_proposal_2.pdf",
+        confidence: 0.85,
+        entity: "fyp",
+        tags: ["fyp", "proposal", "compsci"],
+        reasoning: "Final Year Project thesis proposal document with academic structure.",
+        snippet: "UNIVERSITI MALAYSIA SABAH - Faculty of Computing and Informatics. FYP Proposal 2: Intelligent Systems for Nutrition Analysis. Student: Eldion Ryan Godius (BI23110190)."
+      },
+      "KK35403 Mobile Apps Development - Week 8.pdf": {
+        category: "Work",
+        target_folder: "Documents/Work",
+        standardized_name: "2026-07-07_work_chin-kim-on_KK35403-W8.pdf",
+        confidence: 0.80,
+        entity: "chin-kim-on",
+        tags: ["coursework", "mobile", "android"],
+        reasoning: "Lecture slides and lab exercises on Kotlin Android state management and architecture.",
+        snippet: "KK35403 Mobile Applications Development - Week 8: Advanced State in Jetpack Compose. Lecturer: Assoc. Prof. Dr. Chin Kim On. Learning Outcomes: State hoisting, ViewModel integration."
+      },
+      "BI23110190 Eldion Ryan Project Summary(1).docx": {
+        category: "Work",
+        target_folder: "Documents/Work",
+        standardized_name: "2026-03-17_work_bi23110190_project-summary.docx",
+        confidence: 0.85,
+        entity: "bi23110190",
+        tags: ["project", "bi23110190", "summary"],
+        reasoning: "Student individual software engineering project specification declaration.",
+        snippet: "Project Declaration Form & Executive Summary. Matric ID: BI23110190. Candidate: Eldion Ryan Godius. System Scope: AI-powered automated file sorting pipeline."
+      },
+      "Ej3nAliSeries_archive.torrent": {
+        category: "Torrents",
+        target_folder: "Downloads/Torrents",
+        standardized_name: "2026-09-24_downloads_archive_Ej3nAliSeries.torrent",
+        confidence: 1.0,
+        entity: "archive",
+        tags: ["override", "torrent"],
+        reasoning: "Matched exact pattern override rule '*.torrent' with 100% confidence.",
+        snippet: "BitTorrent protocol metainfo file [Bencoded metadata]. Announce: udp://tracker.opentrackr.org:1337/announce"
+      },
+      "SULAM Kampung Gentisan Financial Summary 2.pdf": {
+        category: "Finance",
+        target_folder: "Finance/Invoices",
+        standardized_name: "2026-06-21_invoices_sulam_SULAM_Financial_Summary_2.pdf",
+        confidence: 0.85,
+        entity: "sulam",
+        tags: ["finance", "budget", "sulam"],
+        reasoning: "Community outreach program budget breakdown with income and expenditure items.",
+        snippet: "Laporan Perincian Bajet & Kewangan Program SULAM Kampung Gentisan. Jumlah Perbelanjaan: RM 1,450.00. Baki Akhir: RM 230.00. Disahkan oleh Bendahari Program."
+      },
+      "ChatGPT Image Oct 1, 2026, 01_53_49 AM.png": {
+        category: "Wallpapers",
+        target_folder: "Media/Wallpapers",
+        standardized_name: "2026-10-01_wallpapers_chatgpt_cyberpunk-scene.png",
+        confidence: 0.90,
+        entity: "chatgpt",
+        tags: ["wallpaper", "4k", "ai-art"],
+        reasoning: "High resolution landscape wallpaper generated with DALL-E/ChatGPT.",
+        snippet: "PNG Image: 3840x2160 (RGB 8-bit). Aspect Ratio: 1.78. Detected content: Futuristic cyberpunk neon cityscape."
+      },
+      "Food Tracking & Nearby Eats Survey (3).csv": {
+        category: "Datasets",
+        target_folder: "Dev/Datasets",
+        standardized_name: "2026-06-24_datasets_food_Food_Tracking_Survey.csv",
+        confidence: 0.85,
+        entity: "food",
+        tags: ["dataset", "survey", "csv"],
+        reasoning: "Tabular machine learning dataset containing student survey responses and dietary attributes.",
+        snippet: "respondent_id, age_group, meal_type, favorite_cuisine, daily_budget_myr, ordering_frequency\n1, 21-24, Lunch, Local Sabah, 15.00, Daily\n2, 18-20, Dinner, Western, 22.50, Weekly"
+      },
+      "Daily Menu Code Documentation - 29 June.pdf": {
+        category: "SourceCode",
+        target_folder: "Dev/SourceCode",
+        standardized_name: "2026-06-29_sourcecode_daily_Daily_Menu_Code_Docs.pdf",
+        confidence: 0.85,
+        entity: "daily-menu",
+        tags: ["code", "docs", "python"],
+        reasoning: "Software architecture and API documentation for Daily Menu backend service.",
+        snippet: "DailyMenu Technical Architecture & Codebase Map. Endpoints: /api/v1/recipes, /api/v1/nutrition. Database models: RecipeItem, CalorieLog. Stack: Python FastAPI + SQLite."
+      },
+      "KK35603 - Topic 2 - Fundamental Test Process.pdf": {
+        category: "Work",
+        target_folder: "Documents/Work",
+        standardized_name: "2026-05-19_work_suraya-binti-ali_KK35603-Topic2.pdf",
+        confidence: 0.70,
+        entity: "suraya-binti-ali",
+        tags: ["testing", "coursework", "sqt"],
+        reasoning: "Software Quality & Testing lecture notes covering ISTQB test process fundamentals.",
+        snippet: "KK35603 Software Quality & Testing. Topic 2: Fundamental Test Process and Principles. Lecturer: Dr. Suraya Binti Ali. Test planning, monitoring, test analysis and design."
+      },
+      "RHBDANAHAZEEM2025.pdf": {
+        category: "Finance",
+        target_folder: "Finance/Invoices",
+        standardized_name: "2026-10-23_invoices_rhb_RHBDANAHAZEEM2025.pdf",
+        confidence: 0.85,
+        entity: "rhb",
+        tags: ["finance", "investment", "rhb"],
+        reasoning: "RHB Asset Management financial prospectus and fund statement.",
+        snippet: "RHB Asset Management Berhad. Annual Report & Fund Statement for RHB Dana Hazeem. Net Asset Value (NAV): RM 124,510,000. Manager: Tan Weng Mun."
+      }
+    };
+
+    // Check server connection
     async function checkServerConnection() {
       try {
         const res = await fetch('/api/status', { signal: AbortSignal.timeout(1500) });
@@ -452,49 +634,309 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
             document.getElementById('watcherPathsText').textContent = data.watch_paths.join(', ');
           }
           refreshHistoryFromAPI();
+          browseDirectory("~/Downloads");
           return;
         }
       } catch (e) {
-        // Not running on local server (e.g. running statically on Vercel)
+        // Fallback to demo mode
       }
       isLocalServer = false;
-      document.getElementById('connStatusDot').className = "w-2 h-2 rounded-full bg-cyan-400";
-      document.getElementById('connStatusText').textContent = "Interactive Cloud Simulator";
+      document.getElementById('connStatusDot').className = "w-2 h-2 rounded-full bg-purple-400";
+      document.getElementById('connStatusText').textContent = "Interactive Virtual Sandbox";
       document.getElementById('liveBanner').classList.add('hidden');
+      browseDirectory("~/Downloads");
     }
 
-    function updateDaemonStatusUI(running) {
-      const text = document.getElementById('daemonStatusText');
-      const btn = document.getElementById('toggleDaemonBtn');
-      if (running) {
-        text.textContent = "ACTIVE (WATCHING)";
-        text.className = "text-emerald-300 font-bold";
-        btn.textContent = "⏹ Stop Watcher Daemon";
-        btn.className = "px-3 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-medium text-xs transition";
+    // Browse Directory
+    async function browseDirectory(dirPath) {
+      currentFsPath = dirPath;
+      renderBreadcrumbs(dirPath);
+
+      if (isLocalServer) {
+        try {
+          const res = await fetch(`/api/fs/browse?path=${encodeURIComponent(dirPath)}`);
+          const data = await res.json();
+          if (data.error) {
+            alert("Directory browse error: " + data.error);
+          } else {
+            currentFsItems = { directories: data.directories || [], files: data.files || [] };
+            currentFsPath = data.current_path;
+            renderBreadcrumbs(data.current_path);
+            renderFsItems();
+          }
+        } catch (err) {
+          console.error("Local browse failed:", err);
+        }
       } else {
-        text.textContent = "IDLE";
-        text.className = "text-slate-300";
-        btn.textContent = "▶ Start Watcher Daemon";
-        btn.className = "px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-xs transition";
+        // Virtual mode lookup
+        const lookupKey = dirPath in virtualFS ? dirPath : "~";
+        const v = virtualFS[lookupKey] || { directories: [], files: [] };
+        currentFsItems = { directories: v.directories, files: v.files };
+        renderFsItems();
       }
     }
 
-    async function toggleDaemon() {
-      if (!isLocalServer) {
-        alert("Daemon toggle is active when running 'neurosort ui' locally.");
-        return;
-      }
-      const isRunning = document.getElementById('daemonStatusText').textContent.includes("ACTIVE");
-      const endpoint = isRunning ? '/api/daemon/stop' : '/api/daemon/start';
-      try {
-        const res = await fetch(endpoint, { method: 'POST' });
-        const data = await res.json();
-        updateDaemonStatusUI(data.running);
-      } catch (err) {
-        alert("Failed to toggle daemon: " + err.message);
+    function renderBreadcrumbs(pathStr) {
+      const container = document.getElementById('breadcrumbsContainer');
+      container.innerHTML = '';
+
+      let parts = pathStr.replace(/\\/g, '/').split('/').filter(Boolean);
+      let cumulative = "";
+
+      // Root / Home
+      const rootBtn = document.createElement('button');
+      rootBtn.className = "hover:text-cyan-300 transition text-slate-400";
+      rootBtn.textContent = pathStr.startsWith('~') ? "~" : "/";
+      rootBtn.onclick = () => browseDirectory(pathStr.startsWith('~') ? "~" : "/");
+      container.appendChild(rootBtn);
+
+      parts.forEach((p, idx) => {
+        if (p === "~") return;
+        const sep = document.createElement('span');
+        sep.className = "text-slate-600";
+        sep.textContent = "/";
+        container.appendChild(sep);
+
+        const partBtn = document.createElement('button');
+        const isLast = idx === parts.length - 1;
+        partBtn.className = isLast ? "text-cyan-300 font-bold" : "hover:text-cyan-300 text-slate-400";
+        partBtn.textContent = p;
+        
+        let targetPath = parts.slice(0, idx + 1).join('/');
+        if (pathStr.startsWith('~')) targetPath = "~/" + parts.slice(parts[0] === "~" ? 1 : 0, idx + 1).join('/');
+        else targetPath = "/" + targetPath;
+
+        partBtn.onclick = () => browseDirectory(targetPath);
+        container.appendChild(partBtn);
+      });
+    }
+
+    function navigateUp() {
+      if (currentFsPath === "~" || currentFsPath === "/") return;
+      const parts = currentFsPath.replace(/\\/g, '/').split('/').filter(Boolean);
+      if (parts.length <= 1) {
+        browseDirectory("~");
+      } else {
+        parts.pop();
+        const parentPath = currentFsPath.startsWith('~') ? ("~/" + parts.slice(parts[0] === "~" ? 1 : 0).join('/')) : ("/" + parts.join('/'));
+        browseDirectory(parentPath || "~");
       }
     }
 
+    function getFileIcon(ext) {
+      ext = (ext || "").toLowerCase();
+      if (ext === ".pdf") return "📕";
+      if ([".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic"].includes(ext)) return "🖼️";
+      if ([".py", ".js", ".ts", ".rs", ".go", ".sh", ".sql"].includes(ext)) return "💻";
+      if ([".csv", ".json", ".xlsx", ".ods", ".parquet"].includes(ext)) return "📊";
+      if ([".zip", ".tar.gz", ".iso", ".torrent"].includes(ext)) return "📦";
+      if ([".docx", ".doc", ".txt", ".md", ".pptx"].includes(ext)) return "📝";
+      return "📄";
+    }
+
+    function renderFsItems() {
+      const container = document.getElementById('fsItemList');
+      const filter = document.getElementById('fsSearchFilter').value.toLowerCase().trim();
+      container.innerHTML = '';
+
+      let totalVisible = 0;
+
+      // Directories
+      currentFsItems.directories.forEach(dir => {
+        if (filter && !dir.name.toLowerCase().includes(filter)) return;
+        totalVisible++;
+
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/80 cursor-pointer text-xs text-slate-300 transition group border border-transparent hover:border-slate-700";
+        div.onclick = () => browseDirectory(dir.path);
+
+        div.innerHTML = `
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-base">📁</span>
+            <span class="font-medium text-slate-200 group-hover:text-cyan-300 truncate">${dir.name}</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">${dir.modified || ''}</span>
+        `;
+        container.appendChild(div);
+      });
+
+      // Files
+      currentFsItems.files.forEach(file => {
+        if (filter && !file.name.toLowerCase().includes(filter)) return;
+        totalVisible++;
+
+        const isSelected = currentSelectedFile && currentSelectedFile.path === file.path;
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-between p-2 rounded-lg cursor-pointer text-xs transition border ${
+          isSelected 
+            ? 'bg-purple-950/40 border-purple-500/50 shadow-sm shadow-purple-500/20' 
+            : 'hover:bg-slate-800/60 border-transparent hover:border-slate-700/80'
+        }`;
+        div.onclick = () => selectFileForFutureSight(file);
+
+        div.innerHTML = `
+          <div class="flex items-center gap-2 truncate pr-2">
+            <span class="text-base">${getFileIcon(file.extension)}</span>
+            <span class="font-mono text-slate-200 ${isSelected ? 'text-purple-300 font-semibold' : ''} truncate" title="${file.name}">
+              ${file.name}
+            </span>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-[10px] text-slate-400 whitespace-nowrap">
+            <span>${file.size_formatted}</span>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('fsItemCountBadge').textContent = `${totalVisible} items shown`;
+
+      // Auto select first file if none selected yet
+      if (!currentSelectedFile && currentFsItems.files.length > 0) {
+        selectFileForFutureSight(currentFsItems.files[0]);
+      }
+    }
+
+    function filterFsItems() {
+      renderFsItems();
+    }
+
+    // 🔮 SELECT FILE AND PROJECT FUTURE SIGHT
+    async function selectFileForFutureSight(file) {
+      currentSelectedFile = file;
+      renderFsItems(); // update selection highlight
+
+      // Update badge to analyzing
+      const badge = document.getElementById('projectionConfidenceBadge');
+      badge.className = "text-xs font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 animate-pulse";
+      badge.textContent = "🔮 Projecting Future Sight...";
+
+      if (isLocalServer) {
+        try {
+          const res = await fetch(`/api/fs/preview?path=${encodeURIComponent(file.path)}`);
+          const data = await res.json();
+          if (data.error) {
+            alert("Future sight error: " + data.error);
+          } else {
+            renderFutureSightProjection(data.original, data.future_sight);
+          }
+        } catch (err) {
+          console.error("Projection failed:", err);
+        }
+      } else {
+        // Virtual sandbox lookup
+        const virt = virtualProjections[file.name] || {
+          category: file.name.includes("FYP") ? "Work" : "Documents",
+          target_folder: "Documents/Work",
+          standardized_name: `2026-11-02_work_general_${file.name.replace(/[^a-zA-Z0-9_\-\.]/g, '_')}`,
+          confidence: 0.85,
+          entity: "general",
+          tags: ["document", "preview"],
+          reasoning: "Semantically categorized based on content keywords and MIME heuristics.",
+          snippet: `Raw content sample for ${file.name}. Inspected without disk alteration.`
+        };
+
+        const orig = {
+          name: file.name,
+          path: file.path,
+          size_formatted: file.size_formatted,
+          mime_type: "document/pdf",
+          created_date: file.modified || "2026-06-20",
+          snippet: virt.snippet
+        };
+
+        const future = {
+          target_folder: virt.target_folder,
+          standardized_name: virt.standardized_name,
+          destination_full_path: `~/Documents/Organized/${virt.target_folder}/${virt.standardized_name}`,
+          confidence: virt.confidence,
+          category: virt.category,
+          entity: virt.entity,
+          tags: virt.tags,
+          reasoning: virt.reasoning
+        };
+
+        renderFutureSightProjection(orig, future);
+      }
+    }
+
+    function renderFutureSightProjection(orig, future) {
+      currentProjection = { orig, future };
+
+      // Original details
+      document.getElementById('projOriginalName').textContent = orig.name;
+      document.getElementById('projOriginalPath').textContent = orig.path;
+      document.getElementById('projOriginalMeta').textContent = `${orig.size_formatted || ''} • ${orig.created_date || ''}`;
+      document.getElementById('projSnippet').textContent = orig.snippet || '(No snippet available)';
+
+      // Future Sight details
+      document.getElementById('projStandardizedName').textContent = future.standardized_name;
+      document.getElementById('projTargetFolder').textContent = `📁 ~/Documents/Organized/${future.target_folder}/`;
+      document.getElementById('projCategoryBadge').textContent = future.category || 'General';
+      document.getElementById('projEntity').textContent = future.entity || 'general';
+      document.getElementById('projReasoning').textContent = `"${future.reasoning || ''}"`;
+
+      // Confidence badge
+      const confPercent = Math.round((future.confidence || 0.85) * 100);
+      const confBadge = document.getElementById('projectionConfidenceBadge');
+      confBadge.className = confPercent >= 80 
+        ? "text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+        : "text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30";
+      confBadge.textContent = `Projected Match: ${confPercent}%`;
+
+      // Tags
+      const tagsContainer = document.getElementById('projTags');
+      tagsContainer.innerHTML = '';
+      (future.tags || []).forEach(t => {
+        const span = document.createElement('span');
+        span.className = "text-[10px] px-1.5 py-0.5 rounded bg-purple-900/40 text-purple-200 border border-purple-700/50";
+        span.textContent = t;
+        tagsContainer.appendChild(span);
+      });
+
+      // Show commit single button
+      document.getElementById('commitSingleBtn').classList.remove('hidden');
+    }
+
+    async function commitProjectedMove() {
+      if (!currentProjection) return;
+      const confirmMove = confirm(`Apply Future Sight Move for:\n"${currentProjection.orig.name}"\n➔ "${currentProjection.future.standardized_name}"?\n\nThis will move the file to ~/Documents/Organized/${currentProjection.future.target_folder}/ with instant rollback.`);
+      if (!confirmMove) return;
+
+      if (isLocalServer) {
+        try {
+          const res = await fetch('/api/fs/commit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              file_path: currentProjection.orig.path,
+              target_folder: currentProjection.future.target_folder,
+              standardized_name: currentProjection.future.standardized_name,
+              confidence: currentProjection.future.confidence,
+              category: currentProjection.future.category,
+              entity: currentProjection.future.entity,
+              tags: currentProjection.future.tags,
+              reasoning: currentProjection.future.reasoning
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            alert(`File moved cleanly! Transaction #${data.tx_id} committed to SQLite ledger.`);
+            browseDirectory(currentFsPath);
+            refreshHistoryFromAPI();
+          } else {
+            alert("Move error: " + data.error);
+          }
+        } catch (err) {
+          alert("Commit failed: " + err.message);
+        }
+      } else {
+        alert(`[Demo Mode] Simulated moving "${currentProjection.orig.name}" to ~/Documents/Organized/${currentProjection.future.target_folder}/`);
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // BATCH SCANNER & STAGING AREA LOGIC
+    // -------------------------------------------------------------------------
     async function triggerLiveScan() {
       const scanPath = document.getElementById('scanPathInput').value.trim();
       const btn = document.getElementById('scanBtn');
@@ -518,9 +960,9 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
       } else {
         // Cloud simulator mode: load simulated student/academic coursework and invoices
         stagedFiles = [
-          { original_path: "~/Downloads/FYP_proposal_2.pdf", original_name: "FYP proposal 2 _ The CompSci Student.pdf", target_folder: "Documents/Work", standardized_name: "2026-06-23_work_fyp_FYP_proposal_2.pdf", confidence: 0.85, category: "Work", reasoning: "Final Year Project proposal academic paper", tags: ["fyp", "proposal"] },
+          { original_path: "~/Downloads/FYP_proposal_2.pdf", original_name: "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", target_folder: "Documents/Work", standardized_name: "2026-06-23_work_fyp_FYP_proposal_2.pdf", confidence: 0.85, category: "Work", reasoning: "Final Year Project proposal academic paper", tags: ["fyp", "proposal"] },
           { original_path: "~/Downloads/KK35403_Mobile_Apps_Week8.pdf", original_name: "KK35403 Mobile Apps Development - Week 8.pdf", target_folder: "Documents/Work", standardized_name: "2026-07-07_work_chin-kim-on_KK35403-W8.pdf", confidence: 0.80, category: "Work", reasoning: "University lecture notes on mobile app architecture", tags: ["coursework", "mobile"] },
-          { original_path: "~/Downloads/BI23110190_Project_Summary.docx", original_name: "BI23110190 Eldion Ryan Project Summary.docx", target_folder: "Documents/Work", standardized_name: "2026-03-17_work_bi23110190_project-summary.docx", confidence: 0.85, category: "Work", reasoning: "Software engineering project declaration summary", tags: ["project", "bi23110190"] },
+          { original_path: "~/Downloads/BI23110190_Project_Summary.docx", original_name: "BI23110190 Eldion Ryan Project Summary(1).docx", target_folder: "Documents/Work", standardized_name: "2026-03-17_work_bi23110190_project-summary.docx", confidence: 0.85, category: "Work", reasoning: "Software engineering project declaration summary", tags: ["project", "bi23110190"] },
           { original_path: "~/Downloads/Ej3nAliSeries_archive.torrent", original_name: "Ej3nAliSeries_archive.torrent", target_folder: "Downloads/Torrents", standardized_name: "2026-09-24_downloads_archive_Ej3nAliSeries.torrent", confidence: 1.0, category: "Torrents", reasoning: "Matched exact pattern override rule *.torrent", tags: ["override", "torrent"] },
           { original_path: "~/Downloads/invoice_stripe_march.pdf", original_name: "invoice_stripe_march.pdf", target_folder: "Finance/Invoices", standardized_name: "2026-03-15_invoices_stripe_march-bill.pdf", confidence: 0.98, category: "Finance", reasoning: "Stripe cloud services billing receipt", tags: ["invoice", "stripe"] },
           { original_path: "~/Downloads/users_training_data.csv", original_name: "users_training_data.csv", target_folder: "Dev/Datasets", standardized_name: "2026-06-25_datasets_food_Food_Tracking_Survey.csv", confidence: 0.85, category: "Datasets", reasoning: "Tabular machine learning dataset with survey responses", tags: ["dataset", "survey"] },
@@ -581,20 +1023,15 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
     }
 
     function toggleSelectFile(idx, checked) {
-      if (checked) {
-        selectedFileIndices.add(idx);
-      } else {
-        selectedFileIndices.delete(idx);
-      }
+      if (checked) selectedFileIndices.add(idx);
+      else selectedFileIndices.delete(idx);
       document.getElementById('selectedCount').textContent = selectedFileIndices.size;
     }
 
     function toggleSelectAllStaged(forceChecked) {
       const willSelect = forceChecked !== undefined ? forceChecked : (selectedFileIndices.size < stagedFiles.length);
       selectedFileIndices.clear();
-      if (willSelect) {
-        stagedFiles.forEach((_, idx) => selectedFileIndices.add(idx));
-      }
+      if (willSelect) stagedFiles.forEach((_, idx) => selectedFileIndices.add(idx));
       document.getElementById('selectAllCheckbox').checked = willSelect;
       renderStagingTable();
     }
@@ -616,7 +1053,6 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
         alert("Please select at least one file to organize.");
         return;
       }
-
       const filesToMove = Array.from(selectedFileIndices).map(i => stagedFiles[i]);
       const btn = document.getElementById('organizeSelectedBtn');
       btn.disabled = true;
@@ -631,7 +1067,6 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
           });
           const data = await res.json();
           showToast(`Successfully organized ${data.executed} files! Transaction committed to SQLite.`);
-          // Remove organized files from list
           stagedFiles = stagedFiles.filter((_, idx) => !selectedFileIndices.has(idx));
           selectedFileIndices.clear();
           renderStagingTable();
@@ -640,7 +1075,6 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
           alert("Execution failed: " + err.message);
         }
       } else {
-        // Simulated execution
         showToast(`[Demo Mode] Simulated moving ${filesToMove.length} files to ~/Documents/Organized/!`);
         stagedFiles = stagedFiles.filter((_, idx) => !selectedFileIndices.has(idx));
         selectedFileIndices.clear();
@@ -658,7 +1092,16 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
       setTimeout(() => toast.classList.add('hidden'), 5000);
     }
 
-    // History and Ledger API Integration
+    // -------------------------------------------------------------------------
+    // SQLITE LEDGER & UNDO
+    // -------------------------------------------------------------------------
+    let demoTransactions = [
+      { id: 104, timestamp: "2026-11-02 18:40:12", source: "invoice_stripe.pdf", target: "Finance/Invoices/2026-11-02_invoices_stripe_invoice-stripe.pdf", hash: "9a4f21e0...c821", status: "MOVED" },
+      { id: 103, timestamp: "2026-11-02 18:35:04", source: "lab_results_jane.pdf", target: "Health/Medical/2026-11-02_medical_quest_lab-results.pdf", hash: "7c12bf44...0911", status: "MOVED" },
+      { id: 102, timestamp: "2026-11-02 18:22:50", source: "dataset_users.csv", target: "Dev/Datasets/2026-11-02_datasets_data_dataset-users.csv", hash: "2e99d81a...ba34", status: "MOVED" },
+      { id: 101, timestamp: "2026-11-02 18:10:19", source: "wallpaper_4k_neon.png", target: "Media/Wallpapers/2026-11-02_wallpapers_4k_neon.png", hash: "5d0124fe...8872", status: "REVERTED" }
+    ];
+
     async function refreshHistoryFromAPI() {
       if (!isLocalServer) {
         renderLedger();
@@ -682,41 +1125,6 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
         renderLedger();
       }
     }
-
-    async function revertTx(id) {
-      if (isLocalServer) {
-        try {
-          const res = await fetch('/api/rollback', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ tx_id: id })
-          });
-          const data = await res.json();
-          if (data.success) {
-            showToast(`Transaction #${id} successfully reverted! Restored to ${data.restored_path}`);
-            refreshHistoryFromAPI();
-          } else {
-            alert("Rollback error: " + data.error);
-          }
-        } catch (err) {
-          alert("Rollback failed: " + err.message);
-        }
-      } else {
-        const tx = demoTransactions.find(t => t.id === id);
-        if (tx && tx.status === 'MOVED') {
-          tx.status = 'REVERTED';
-          renderLedger();
-        }
-      }
-    }
-
-    // Ledger Demo State
-    let demoTransactions = [
-      { id: 104, timestamp: "2026-11-02 18:40:12", source: "invoice_stripe.pdf", target: "Finance/Invoices/2026-11-02_invoices_stripe_invoice-stripe.pdf", hash: "9a4f21e0...c821", status: "MOVED" },
-      { id: 103, timestamp: "2026-11-02 18:35:04", source: "lab_results_jane.pdf", target: "Health/Medical/2026-11-02_medical_quest_lab-results.pdf", hash: "7c12bf44...0911", status: "MOVED" },
-      { id: 102, timestamp: "2026-11-02 18:22:50", source: "dataset_users.csv", target: "Dev/Datasets/2026-11-02_datasets_data_dataset-users.csv", hash: "2e99d81a...ba34", status: "MOVED" },
-      { id: 101, timestamp: "2026-11-02 18:10:19", source: "wallpaper_4k_neon.png", target: "Media/Wallpapers/2026-11-02_wallpapers_4k_neon.png", hash: "5d0124fe...8872", status: "REVERTED" }
-    ];
 
     function renderLedger() {
       const tbody = document.getElementById('ledgerRows');
@@ -747,152 +1155,63 @@ Payment Status: PAID via Credit Card (ending 4242)</textarea>
       });
     }
 
-    // Simulator Samples
-    const samples = {
-      invoice: {
-        name: "invoice_stripe_march_2024.pdf",
-        text: "INVOICE #INV-88214\nIssuer: Stripe Payments Inc.\nBilled To: Eldion Software Engineering\nDate: 2024-03-15\nTotal Due: $249.00 USD\nPayment Status: PAID via Credit Card (ending 4242)",
-        folder: "Finance/Invoices",
-        category: "invoices",
-        entity: "stripe",
-        stdName: "2024-03-15_invoices_stripe_invoice-stripe-march-2024.pdf",
-        confidence: "0.98",
-        reasoning: "Identified payment invoice from Stripe with exact billing date and dollar amounts.",
-        tags: ["invoice", "billing", "tax"]
-      },
-      medical: {
-        name: "lab_report_blood_metabolic.pdf",
-        text: "QUEST DIAGNOSTICS LAB REPORT\nPatient Name: Jane Doe\nPhysician: Dr. Robert Vance, MD\nCollection Date: 2024-04-10\nTests: Comprehensive Metabolic Panel (CMP), Lipid Panel\nStatus: Final Laboratory Results",
-        folder: "Health/Medical",
-        category: "medical",
-        entity: "quest-diagnostics",
-        stdName: "2024-04-10_medical_quest-diagnostics_lab-report-blood-metabolic.pdf",
-        confidence: "0.96",
-        reasoning: "Clinical laboratory report with medical tests and physician information.",
-        tags: ["medical", "lab-result", "health"]
-      },
-      photo: {
-        name: "IMG_20240520_183022.jpg",
-        text: "EXIF Metadata: Dimensions 4032x3024, Camera: Apple iPhone 15 Pro, Lens: 24mm f/1.78, GPS: (37.7749, -122.4194), DateTaken: 2024-05-20 18:30:22",
-        folder: "Media/Photos",
-        category: "photos",
-        entity: "camera",
-        stdName: "2024-05-20_photos_camera_img-20240520-183022.jpg",
-        confidence: "0.92",
-        reasoning: "Camera snapshot with GPS coordinates and high resolution EXIF metadata.",
-        tags: ["photo", "exif", "camera"]
-      },
-      dataset: {
-        name: "customer_churn_q1_features.csv",
-        text: "customer_id,tenure_months,monthly_charges,total_charges,contract_type,churn_status\n1001,14,65.50,917.00,Month-to-month,No\n1002,3,89.20,267.60,Month-to-month,Yes",
-        folder: "Dev/Datasets",
-        category: "datasets",
-        entity: "data",
-        stdName: "2024-06-01_datasets_data_customer-churn-q1-features.csv",
-        confidence: "0.94",
-        reasoning: "Tabular machine learning dataset with feature headers and numerical columns.",
-        tags: ["dataset", "csv", "ml"]
+    async function revertTx(id) {
+      if (isLocalServer) {
+        try {
+          const res = await fetch('/api/rollback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tx_id: id })
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast(`Transaction #${id} successfully reverted! Restored to ${data.restored_path}`);
+            refreshHistoryFromAPI();
+          } else {
+            alert("Rollback error: " + data.error);
+          }
+        } catch (err) {
+          alert("Rollback failed: " + err.message);
+        }
+      } else {
+        const tx = demoTransactions.find(t => t.id === id);
+        if (tx && tx.status === 'MOVED') {
+          tx.status = 'REVERTED';
+          renderLedger();
+        }
       }
-    };
-
-    function loadSample(key) {
-      const s = samples[key];
-      if (!s) return;
-      document.getElementById('inputFileName').value = s.name;
-      document.getElementById('inputTextSnippet').value = s.text;
-      renderSimulationResult(s);
     }
 
-    function runSimulation() {
-      const filename = document.getElementById('inputFileName').value.trim();
-      const text = document.getElementById('inputTextSnippet').value.trim().toLowerCase();
-      const template = document.getElementById('inputTemplate').value.trim();
-
-      let folder = "Documents/Work";
-      let category = "work";
-      let entity = "general";
-      let confidence = 0.85;
-      let tags = ["document"];
-      let reasoning = "Classified based on content tokens.";
-
-      if (text.includes("invoice") || text.includes("receipt") || text.includes("stripe") || text.includes("payment")) {
-        folder = "Finance/Invoices";
-        category = "invoices";
-        entity = text.includes("stripe") ? "stripe" : "billing";
-        confidence = 0.98;
-        tags = ["invoice", "finance", "billing"];
-        reasoning = "Identified financial transaction document with billing details.";
-      } else if (text.includes("medical") || text.includes("doctor") || text.includes("lab") || text.includes("health")) {
-        folder = "Health/Medical";
-        category = "medical";
-        entity = "health-clinic";
-        confidence = 0.95;
-        tags = ["medical", "health", "lab-result"];
-        reasoning = "Identified medical diagnostic records and clinical documentation.";
-      } else if (text.includes("dataset") || text.includes("csv") || text.includes("features") || filename.endsWith(".csv")) {
-        folder = "Dev/Datasets";
-        category = "datasets";
-        entity = "dev";
-        confidence = 0.94;
-        tags = ["dataset", "dev", "data"];
-        reasoning = "Structured dataset with column headers and records.";
-      } else if (text.includes("exif") || text.includes("camera") || filename.endsWith(".jpg") || filename.endsWith(".png")) {
-        folder = "Media/Photos";
-        category = "photos";
-        entity = "camera";
-        confidence = 0.92;
-        tags = ["photo", "media"];
-        reasoning = "Visual media image file with metadata.";
+    function updateDaemonStatusUI(running) {
+      const text = document.getElementById('daemonStatusText');
+      const btn = document.getElementById('toggleDaemonBtn');
+      if (running) {
+        text.textContent = "ACTIVE (WATCHING)";
+        text.className = "text-emerald-300 font-bold";
+        btn.textContent = "⏹ Stop Watcher Daemon";
+        btn.className = "px-3 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-medium text-xs transition";
+      } else {
+        text.textContent = "IDLE";
+        text.className = "text-slate-300";
+        btn.textContent = "▶ Start Watcher Daemon";
+        btn.className = "px-3 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-xs transition";
       }
-
-      const ext = filename.includes(".") ? filename.split('.').pop() : "bin";
-      const stem = filename.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9_\-]/g, "-").toLowerCase();
-      const dateStr = new Date().toISOString().split('T')[0];
-
-      let stdName = template
-        .replace('{date}', dateStr)
-        .replace('{category}', category)
-        .replace('{entity}', entity)
-        .replace('{original_title}', stem)
-        .replace('{ext}', ext);
-
-      renderSimulationResult({
-        folder: folder,
-        category: category,
-        entity: entity,
-        stdName: stdName,
-        confidence: confidence.toFixed(2),
-        reasoning: reasoning,
-        tags: tags
-      });
     }
 
-    function renderSimulationResult(data) {
-      document.getElementById('outputFolder').textContent = "📁 ~/Documents/Organized/" + data.folder + "/";
-      document.getElementById('outputName').textContent = "📄 " + data.stdName;
-      document.getElementById('outputConfidence').textContent = "Confidence: " + data.confidence;
-      document.getElementById('outputEntity').textContent = data.entity;
-      document.getElementById('outputReasoning').textContent = '"' + data.reasoning + '"';
-
-      const tagContainer = document.getElementById('outputTags');
-      tagContainer.innerHTML = '';
-      data.tags.forEach(t => {
-        const span = document.createElement('span');
-        span.className = "text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700";
-        span.textContent = t;
-        tagContainer.appendChild(span);
-      });
-
-      const schemaObj = {
-        target_folder: data.folder,
-        category: data.category,
-        entity: data.entity,
-        standardized_name: data.stdName,
-        confidence: parseFloat(data.confidence),
-        reasoning: data.reasoning,
-        tags: data.tags
-      };
-      document.getElementById('outputJson').textContent = JSON.stringify(schemaObj, null, 2);
+    async function toggleDaemon() {
+      if (!isLocalServer) {
+        alert("Daemon toggle is active when running 'neurosort ui' locally.");
+        return;
+      }
+      const isRunning = document.getElementById('daemonStatusText').textContent.includes("ACTIVE");
+      const endpoint = isRunning ? '/api/daemon/stop' : '/api/daemon/start';
+      try {
+        const res = await fetch(endpoint, { method: 'POST' });
+        const data = await res.json();
+        updateDaemonStatusUI(data.running);
+      } catch (err) {
+        alert("Failed to toggle daemon: " + err.message);
+      }
     }
 
     // Initialize on page load

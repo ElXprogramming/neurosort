@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import logging
+import os
 from pathlib import Path
 import threading
 from typing import Any, Dict, List, Optional
@@ -121,6 +123,12 @@ class NeuroSortAPIHandler(BaseHTTPRequestHandler):
             self._handle_history(limit)
         elif path == "/api/config":
             self._handle_get_config()
+        elif path == "/api/fs/browse":
+            browse_path = query.get("path", ["~"])[0]
+            self._handle_browse(browse_path)
+        elif path == "/api/fs/preview":
+            preview_path = query.get("path", [""])[0]
+            self._handle_preview(preview_path)
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found")
 
@@ -149,6 +157,8 @@ class NeuroSortAPIHandler(BaseHTTPRequestHandler):
             self._handle_rollback(data)
         elif path == "/api/config":
             self._handle_update_config(data)
+        elif path == "/api/fs/commit":
+            self._handle_commit_single(data)
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found")
 
@@ -297,6 +307,151 @@ class NeuroSortAPIHandler(BaseHTTPRequestHandler):
         except Exception as exc:
             self._send_json({"error": str(exc)}, status=400)
 
+    def _handle_browse(self, dir_path_str: str) -> None:
+        """Browse real filesystem folders and files safely."""
+        try:
+            target_p = Path(os.path.expanduser(dir_path_str)).resolve()
+            if not target_p.exists() or not target_p.is_dir():
+                target_p = Path.home()
+
+            parent_p = str(target_p.parent) if target_p.parent != target_p else None
+
+            # Generate breadcrumbs
+            home = Path.home()
+            breadcrumbs = []
+            try:
+                rel = target_p.relative_to(home)
+                breadcrumbs.append({"name": "~", "path": str(home)})
+                curr = home
+                for part in rel.parts:
+                    curr = curr / part
+                    breadcrumbs.append({"name": part, "path": str(curr)})
+            except Exception:
+                curr = Path(target_p.anchor)
+                breadcrumbs.append({"name": str(target_p.anchor), "path": str(target_p.anchor)})
+                for part in target_p.parts[1:]:
+                    curr = curr / part
+                    breadcrumbs.append({"name": part, "path": str(curr)})
+
+            directories = []
+            files = []
+
+            for item in sorted(target_p.iterdir(), key=lambda x: x.name.lower()):
+                if item.name.startswith("."):
+                    continue
+                try:
+                    stat = item.stat()
+                    mtime_str = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M")
+                    if item.is_dir():
+                        directories.append({
+                            "name": item.name,
+                            "path": str(item),
+                            "modified": mtime_str,
+                        })
+                    elif item.is_file():
+                        files.append({
+                            "name": item.name,
+                            "path": str(item),
+                            "size_bytes": stat.st_size,
+                            "size_formatted": format_file_size(stat.st_size),
+                            "extension": item.suffix.lower(),
+                            "modified": mtime_str,
+                        })
+                except (PermissionError, OSError):
+                    continue
+
+            self._send_json({
+                "current_path": str(target_p),
+                "parent_path": parent_p,
+                "breadcrumbs": breadcrumbs,
+                "directories": directories,
+                "files": files,
+                "total_items": len(directories) + len(files),
+            })
+        except Exception as exc:
+            self._send_json({"error": str(exc)}, status=500)
+
+    def _handle_preview(self, file_path_str: str) -> None:
+        """Inspect a single real file non-destructively and project its Future Sight state."""
+        assert STATE is not None
+        try:
+            file_path = Path(os.path.expanduser(file_path_str)).resolve()
+            if not file_path.exists() or not file_path.is_file():
+                self._send_json({"error": f"File not found: {file_path_str}"}, status=404)
+                return
+
+            ctx = extract_file_context(file_path)
+            classification = STATE.classifier.classify(ctx)
+            proposed_dest = STATE.executor.resolve_destination(classification, file_path)
+
+            stat = file_path.stat()
+            res = {
+                "original": {
+                    "name": file_path.name,
+                    "path": str(file_path),
+                    "parent_dir": str(file_path.parent),
+                    "size_bytes": stat.st_size,
+                    "size_formatted": format_file_size(stat.st_size),
+                    "mime_type": ctx.mime_type,
+                    "created_date": ctx.created_date.strftime("%Y-%m-%d %H:%M"),
+                    "snippet": (
+                        ctx.extracted_text_snippet[:800]
+                        if ctx.extracted_text_snippet
+                        else "(Binary or media content)"
+                    ),
+                    "raw_metadata": ctx.raw_metadata,
+                },
+                "future_sight": {
+                    "target_folder": classification.target_folder,
+                    "standardized_name": classification.standardized_name,
+                    "destination_full_path": str(proposed_dest),
+                    "confidence": classification.confidence,
+                    "category": classification.category,
+                    "entity": classification.entity,
+                    "tags": classification.tags,
+                    "reasoning": classification.reasoning,
+                },
+            }
+            self._send_json(res)
+        except Exception as exc:
+            logger.error(f"Error projecting Future Sight for {file_path_str}: {exc}")
+            self._send_json({"error": str(exc)}, status=500)
+
+    def _handle_commit_single(self, data: Dict[str, Any]) -> None:
+        """Explicitly apply a single Future Sight projection move upon user request."""
+        assert STATE is not None
+        file_path_str = data.get("file_path")
+        if not file_path_str:
+            self._send_json({"error": "Missing file_path"}, status=400)
+            return
+
+        file_p = Path(os.path.expanduser(file_path_str)).resolve()
+        if not file_p.exists():
+            self._send_json({"error": "File does not exist"}, status=404)
+            return
+
+        try:
+            ctx = extract_file_context(file_p)
+            classification = ClassificationResult(
+                target_folder=data.get("target_folder", "Documents/Work"),
+                standardized_name=data.get("standardized_name", file_p.name),
+                confidence=float(data.get("confidence", 0.9)),
+                reasoning=data.get("reasoning", "Committed via Future Sight GUI"),
+                category=data.get("category", "Work"),
+                entity=data.get("entity", "general"),
+                tags=data.get("tags", []),
+            )
+            result = STATE.executor.execute_move(ctx, classification, dry_run=False)
+            self._send_json({
+                "success": result.success,
+                "source_path": str(result.source_path),
+                "target_path": str(result.target_path),
+                "tx_id": result.tx_id,
+                "error": result.error,
+            })
+        except Exception as exc:
+            self._send_json({"error": str(exc)}, status=500)
+
     def _serve_gui(self) -> None:
         """Serve the interactive web interface."""
         gui_path = Path(__file__).parent.parent / "public" / "index.html"
@@ -305,6 +460,16 @@ class NeuroSortAPIHandler(BaseHTTPRequestHandler):
         else:
             html = "<h1>NeuroSort GUI is active</h1>"
         self._send_html(html)
+
+
+def format_file_size(bytes_num: int) -> str:
+    """Format bytes into human-readable string."""
+    num = float(bytes_num)
+    for unit in ["B", "KB", "MB", "GB"]:
+        if num < 1024.0:
+            return f"{num:.1f} {unit}" if unit != "B" else f"{int(num)} B"
+        num /= 1024.0
+    return f"{num:.1f} TB"
 
 
 def start_server(

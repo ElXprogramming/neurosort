@@ -23,3 +23,10 @@ def test_server_state_lifecycle(tmp_path: Path):
 
     state.stop_daemon()
     assert not state.is_daemon_running()
+
+
+def test_format_file_size():
+    from neurosort.server import format_file_size
+    assert format_file_size(500) == "500 B"
+    assert "KB" in format_file_size(2048)
+    assert "MB" in format_file_size(10485760)
