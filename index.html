@@ -468,7 +468,7 @@
     let stagedFiles = [];
     let selectedFileIndices = new Set();
 
-    // Virtual filesystem for Cloud/Vercel demonstration mode with user's actual files
+    // Virtual filesystem for Cloud/Vercel demonstration mode
     const virtualFS = {
       "~": {
         directories: [
@@ -478,143 +478,143 @@
           { name: "Pictures", path: "~/Pictures", modified: "2026-10-25 09:20" }
         ],
         files: [
-          { name: "My_Timetable.png", path: "~/My_Timetable.png", size_bytes: 420000, size_formatted: "410.2 KB", extension: ".png", modified: "2026-03-16 11:00" }
+          { name: "weekly_schedule.png", path: "~/weekly_schedule.png", size_bytes: 420000, size_formatted: "410.2 KB", extension: ".png", modified: "2026-10-16 11:00" }
         ]
       },
       "~/Downloads": {
         directories: [
-          { name: "Coursework_KK35403", path: "~/Downloads/Coursework_KK35403", modified: "2026-07-07 10:00" },
-          { name: "FYP_Submissions", path: "~/Downloads/FYP_Submissions", modified: "2026-06-28 16:40" }
+          { name: "Code_Projects", path: "~/Downloads/Code_Projects", modified: "2026-10-07 10:00" },
+          { name: "Quarterly_Reports", path: "~/Downloads/Quarterly_Reports", modified: "2026-09-28 16:40" }
         ],
         files: [
-          { name: "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", path: "~/Downloads/FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", size_bytes: 1420500, size_formatted: "1.4 MB", extension: ".pdf", modified: "2026-06-23 14:30" },
-          { name: "KK35403 Mobile Apps Development - Week 8.pdf", path: "~/Downloads/KK35403 Mobile Apps Development - Week 8.pdf", size_bytes: 3200000, size_formatted: "3.1 MB", extension: ".pdf", modified: "2026-07-07 09:15" },
-          { name: "BI23110190 Eldion Ryan Project Summary(1).docx", path: "~/Downloads/BI23110190 Eldion Ryan Project Summary(1).docx", size_bytes: 84000, size_formatted: "82.0 KB", extension: ".docx", modified: "2026-03-17 11:20" },
-          { name: "Ej3nAliSeries_archive.torrent", path: "~/Downloads/Ej3nAliSeries_archive.torrent", size_bytes: 15400, size_formatted: "15.0 KB", extension: ".torrent", modified: "2026-09-24 18:45" },
-          { name: "SULAM Kampung Gentisan Financial Summary 2.pdf", path: "~/Downloads/SULAM Kampung Gentisan Financial Summary 2.pdf", size_bytes: 412000, size_formatted: "402.3 KB", extension: ".pdf", modified: "2026-06-21 15:10" },
-          { name: "ChatGPT Image Oct 1, 2026, 01_53_49 AM.png", path: "~/Downloads/ChatGPT Image Oct 1, 2026, 01_53_49 AM.png", size_bytes: 2840000, size_formatted: "2.7 MB", extension: ".png", modified: "2026-10-01 01:53" },
-          { name: "Food Tracking & Nearby Eats Survey (3).csv", path: "~/Downloads/Food Tracking & Nearby Eats Survey (3).csv", size_bytes: 98000, size_formatted: "95.7 KB", extension: ".csv", modified: "2026-06-24 16:30" },
-          { name: "Daily Menu Code Documentation - 29 June.pdf", path: "~/Downloads/Daily Menu Code Documentation - 29 June.pdf", size_bytes: 610000, size_formatted: "595.7 KB", extension: ".pdf", modified: "2026-06-29 10:24" },
-          { name: "KK35603 - Topic 2 - Fundamental Test Process.pdf", path: "~/Downloads/KK35603 - Topic 2 - Fundamental Test Process.pdf", size_bytes: 1850000, size_formatted: "1.8 MB", extension: ".pdf", modified: "2026-05-19 14:00" },
-          { name: "RHBDANAHAZEEM2025.pdf", path: "~/Downloads/RHBDANAHAZEEM2025.pdf", size_bytes: 750000, size_formatted: "732.4 KB", extension: ".pdf", modified: "2026-10-23 09:50" }
+          { name: "cloud_architecture_spec.docx", path: "~/Downloads/cloud_architecture_spec.docx", size_bytes: 1420500, size_formatted: "1.4 MB", extension: ".docx", modified: "2026-10-23 14:30" },
+          { name: "mobile_app_design_guide.pdf", path: "~/Downloads/mobile_app_design_guide.pdf", size_bytes: 3200000, size_formatted: "3.1 MB", extension: ".pdf", modified: "2026-10-07 09:15" },
+          { name: "acme_corp_invoice_oct2026.pdf", path: "~/Downloads/acme_corp_invoice_oct2026.pdf", size_bytes: 84000, size_formatted: "82.0 KB", extension: ".pdf", modified: "2026-10-17 11:20" },
+          { name: "linux_kernel_source_v6.12.torrent", path: "~/Downloads/linux_kernel_source_v6.12.torrent", size_bytes: 15400, size_formatted: "15.0 KB", extension: ".torrent", modified: "2026-09-24 18:45" },
+          { name: "q3_financial_breakdown.pdf", path: "~/Downloads/q3_financial_breakdown.pdf", size_bytes: 412000, size_formatted: "402.3 KB", extension: ".pdf", modified: "2026-10-21 15:10" },
+          { name: "abstract_neon_wallpaper.png", path: "~/Downloads/abstract_neon_wallpaper.png", size_bytes: 2840000, size_formatted: "2.7 MB", extension: ".png", modified: "2026-10-01 01:53" },
+          { name: "customer_churn_dataset.csv", path: "~/Downloads/customer_churn_dataset.csv", size_bytes: 98000, size_formatted: "95.7 KB", extension: ".csv", modified: "2026-10-24 16:30" },
+          { name: "microservices_api_documentation.pdf", path: "~/Downloads/microservices_api_documentation.pdf", size_bytes: 610000, size_formatted: "595.7 KB", extension: ".pdf", modified: "2026-10-29 10:24" },
+          { name: "software_testing_rubric.pdf", path: "~/Downloads/software_testing_rubric.pdf", size_bytes: 1850000, size_formatted: "1.8 MB", extension: ".pdf", modified: "2026-10-19 14:00" },
+          { name: "annual_tax_filing_statement.pdf", path: "~/Downloads/annual_tax_filing_statement.pdf", size_bytes: 750000, size_formatted: "732.4 KB", extension: ".pdf", modified: "2026-10-23 09:50" }
         ]
       },
-      "~/Downloads/Coursework_KK35403": {
+      "~/Downloads/Code_Projects": {
         directories: [],
         files: [
-          { name: "KK35403 Kotlin Coding Notes.pdf", path: "~/Downloads/Coursework_KK35403/KK35403 Kotlin Coding Notes.pdf", size_bytes: 1120000, size_formatted: "1.1 MB", extension: ".pdf", modified: "2026-07-07 10:15" },
-          { name: "Lab Test Mobile App Dev.pdf", path: "~/Downloads/Coursework_KK35403/Lab Test Mobile App Dev.pdf", size_bytes: 540000, size_formatted: "527.3 KB", extension: ".pdf", modified: "2026-05-03 14:10" }
+          { name: "kotlin_coroutine_patterns.pdf", path: "~/Downloads/Code_Projects/kotlin_coroutine_patterns.pdf", size_bytes: 1120000, size_formatted: "1.1 MB", extension: ".pdf", modified: "2026-10-07 10:15" },
+          { name: "system_architecture_diagram.pdf", path: "~/Downloads/Code_Projects/system_architecture_diagram.pdf", size_bytes: 540000, size_formatted: "527.3 KB", extension: ".pdf", modified: "2026-10-03 14:10" }
         ]
       },
-      "~/Downloads/FYP_Submissions": {
+      "~/Downloads/Quarterly_Reports": {
         directories: [],
         files: [
-          { name: "Actual Final Draft FYP BI23110190.pdf", path: "~/Downloads/FYP_Submissions/Actual Final Draft FYP BI23110190.pdf", size_bytes: 4200000, size_formatted: "4.0 MB", extension: ".pdf", modified: "2026-06-28 17:00" }
+          { name: "q3_consolidated_summary.pdf", path: "~/Downloads/Quarterly_Reports/q3_consolidated_summary.pdf", size_bytes: 4200000, size_formatted: "4.0 MB", extension: ".pdf", modified: "2026-10-28 17:00" }
         ]
       }
     };
 
     // Virtual projections for demo
     const virtualProjections = {
-      "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf": {
+      "cloud_architecture_spec.docx": {
         category: "Work",
         target_folder: "Documents/Work",
-        standardized_name: "2026-06-23_work_fyp_FYP_proposal_2.pdf",
-        confidence: 0.85,
-        entity: "fyp",
-        tags: ["fyp", "proposal", "compsci"],
-        reasoning: "Final Year Project thesis proposal document with academic structure.",
-        snippet: "UNIVERSITI MALAYSIA SABAH - Faculty of Computing and Informatics. FYP Proposal 2: Intelligent Systems for Nutrition Analysis. Student: Eldion Ryan Godius (BI23110190)."
+        standardized_name: "2026-10-23_work_cloud-systems_architecture-spec.docx",
+        confidence: 0.95,
+        entity: "cloud-systems",
+        tags: ["architecture", "spec", "cloud"],
+        reasoning: "Enterprise cloud architecture specification and design document.",
+        snippet: "Cloud Infrastructure Architecture Specification v2.4. Target: Multi-region AWS deployment with Kubernetes and automated disaster recovery."
       },
-      "KK35403 Mobile Apps Development - Week 8.pdf": {
+      "mobile_app_design_guide.pdf": {
         category: "Work",
         target_folder: "Documents/Work",
-        standardized_name: "2026-07-07_work_chin-kim-on_KK35403-W8.pdf",
-        confidence: 0.80,
-        entity: "chin-kim-on",
-        tags: ["coursework", "mobile", "android"],
-        reasoning: "Lecture slides and lab exercises on Kotlin Android state management and architecture.",
-        snippet: "KK35403 Mobile Applications Development - Week 8: Advanced State in Jetpack Compose. Lecturer: Assoc. Prof. Dr. Chin Kim On. Learning Outcomes: State hoisting, ViewModel integration."
+        standardized_name: "2026-10-07_work_design-systems_mobile-app-guide.pdf",
+        confidence: 0.90,
+        entity: "design-systems",
+        tags: ["design", "mobile", "android"],
+        reasoning: "Mobile UI/UX design guideline document covering state management and layout systems.",
+        snippet: "Mobile Design Systems 2026: Jetpack Compose and SwiftUI standard conventions, state hoisting, and accessibility guidelines."
       },
-      "BI23110190 Eldion Ryan Project Summary(1).docx": {
-        category: "Work",
-        target_folder: "Documents/Work",
-        standardized_name: "2026-03-17_work_bi23110190_project-summary.docx",
-        confidence: 0.85,
-        entity: "bi23110190",
-        tags: ["project", "bi23110190", "summary"],
-        reasoning: "Student individual software engineering project specification declaration.",
-        snippet: "Project Declaration Form & Executive Summary. Matric ID: BI23110190. Candidate: Eldion Ryan Godius. System Scope: AI-powered automated file sorting pipeline."
+      "acme_corp_invoice_oct2026.pdf": {
+        category: "Finance",
+        target_folder: "Finance/Invoices",
+        standardized_name: "2026-10-17_invoices_acme-corp_oct2026-bill.pdf",
+        confidence: 0.98,
+        entity: "acme-corp",
+        tags: ["finance", "invoice", "acme"],
+        reasoning: "Commercial billing invoice with tax ID, line items, and payment instructions.",
+        snippet: "INVOICE #INV-2026-8841. Billed to: Development Team. Items: Cloud Compute & Database Hosting. Total: $420.00. Payment Due: 30 Days."
       },
-      "Ej3nAliSeries_archive.torrent": {
+      "linux_kernel_source_v6.12.torrent": {
         category: "Torrents",
         target_folder: "Downloads/Torrents",
-        standardized_name: "2026-09-24_downloads_archive_Ej3nAliSeries.torrent",
+        standardized_name: "2026-09-24_downloads_archive_linux-kernel-6.12.torrent",
         confidence: 1.0,
         entity: "archive",
         tags: ["override", "torrent"],
         reasoning: "Matched exact pattern override rule '*.torrent' with 100% confidence.",
         snippet: "BitTorrent protocol metainfo file [Bencoded metadata]. Announce: udp://tracker.opentrackr.org:1337/announce"
       },
-      "SULAM Kampung Gentisan Financial Summary 2.pdf": {
+      "q3_financial_breakdown.pdf": {
         category: "Finance",
         target_folder: "Finance/Invoices",
-        standardized_name: "2026-06-21_invoices_sulam_SULAM_Financial_Summary_2.pdf",
-        confidence: 0.85,
-        entity: "sulam",
-        tags: ["finance", "budget", "sulam"],
-        reasoning: "Community outreach program budget breakdown with income and expenditure items.",
-        snippet: "Laporan Perincian Bajet & Kewangan Program SULAM Kampung Gentisan. Jumlah Perbelanjaan: RM 1,450.00. Baki Akhir: RM 230.00. Disahkan oleh Bendahari Program."
+        standardized_name: "2026-10-21_invoices_finance_q3-breakdown.pdf",
+        confidence: 0.92,
+        entity: "finance",
+        tags: ["finance", "budget", "quarterly"],
+        reasoning: "Quarterly operational expenditure report with departmental budget summaries.",
+        snippet: "Q3 Departmental Financial Summary & Budget Breakdown. Total Operating Expenses: $45,200.00. Variance from forecast: -3.2%."
       },
-      "ChatGPT Image Oct 1, 2026, 01_53_49 AM.png": {
+      "abstract_neon_wallpaper.png": {
         category: "Wallpapers",
         target_folder: "Media/Wallpapers",
-        standardized_name: "2026-10-01_wallpapers_chatgpt_cyberpunk-scene.png",
-        confidence: 0.90,
-        entity: "chatgpt",
-        tags: ["wallpaper", "4k", "ai-art"],
-        reasoning: "High resolution landscape wallpaper generated with DALL-E/ChatGPT.",
-        snippet: "PNG Image: 3840x2160 (RGB 8-bit). Aspect Ratio: 1.78. Detected content: Futuristic cyberpunk neon cityscape."
+        standardized_name: "2026-10-01_wallpapers_render_abstract-neon.png",
+        confidence: 0.95,
+        entity: "render",
+        tags: ["wallpaper", "4k", "abstract"],
+        reasoning: "High resolution landscape wallpaper generated with 3D raytracing tools.",
+        snippet: "PNG Image: 3840x2160 (RGB 8-bit). Aspect Ratio: 16:9. Detected content: Abstract dark minimalist neon grid visualization."
       },
-      "Food Tracking & Nearby Eats Survey (3).csv": {
+      "customer_churn_dataset.csv": {
         category: "Datasets",
         target_folder: "Dev/Datasets",
-        standardized_name: "2026-06-24_datasets_food_Food_Tracking_Survey.csv",
-        confidence: 0.85,
-        entity: "food",
-        tags: ["dataset", "survey", "csv"],
-        reasoning: "Tabular machine learning dataset containing student survey responses and dietary attributes.",
-        snippet: "respondent_id, age_group, meal_type, favorite_cuisine, daily_budget_myr, ordering_frequency\n1, 21-24, Lunch, Local Sabah, 15.00, Daily\n2, 18-20, Dinner, Western, 22.50, Weekly"
+        standardized_name: "2026-10-24_datasets_analytics_customer-churn.csv",
+        confidence: 0.94,
+        entity: "analytics",
+        tags: ["dataset", "machine-learning", "csv"],
+        reasoning: "Tabular machine learning dataset containing customer behavior attributes and metrics.",
+        snippet: "customer_id, tenure_months, monthly_spend, support_tickets, contract_type, churn_flag\n1001, 24, 75.50, 1, Annual, 0\n1002, 3, 29.99, 4, Monthly, 1"
       },
-      "Daily Menu Code Documentation - 29 June.pdf": {
+      "microservices_api_documentation.pdf": {
         category: "SourceCode",
         target_folder: "Dev/SourceCode",
-        standardized_name: "2026-06-29_sourcecode_daily_Daily_Menu_Code_Docs.pdf",
-        confidence: 0.85,
-        entity: "daily-menu",
-        tags: ["code", "docs", "python"],
-        reasoning: "Software architecture and API documentation for Daily Menu backend service.",
-        snippet: "DailyMenu Technical Architecture & Codebase Map. Endpoints: /api/v1/recipes, /api/v1/nutrition. Database models: RecipeItem, CalorieLog. Stack: Python FastAPI + SQLite."
+        standardized_name: "2026-10-29_sourcecode_backend_microservices-api.pdf",
+        confidence: 0.91,
+        entity: "backend",
+        tags: ["code", "docs", "api"],
+        reasoning: "Software architecture and OpenAPI documentation for backend microservices.",
+        snippet: "Backend Microservices API Reference. Endpoints: /api/v1/auth, /api/v1/users, /api/v1/billing. Technology stack: Python, FastAPI, PostgreSQL."
       },
-      "KK35603 - Topic 2 - Fundamental Test Process.pdf": {
+      "software_testing_rubric.pdf": {
         category: "Work",
         target_folder: "Documents/Work",
-        standardized_name: "2026-05-19_work_suraya-binti-ali_KK35603-Topic2.pdf",
-        confidence: 0.70,
-        entity: "suraya-binti-ali",
-        tags: ["testing", "coursework", "sqt"],
-        reasoning: "Software Quality & Testing lecture notes covering ISTQB test process fundamentals.",
-        snippet: "KK35603 Software Quality & Testing. Topic 2: Fundamental Test Process and Principles. Lecturer: Dr. Suraya Binti Ali. Test planning, monitoring, test analysis and design."
+        standardized_name: "2026-10-19_work_quality_testing-rubric.pdf",
+        confidence: 0.88,
+        entity: "quality",
+        tags: ["testing", "qa", "rubric"],
+        reasoning: "Software Quality Assurance testing standards covering unit, integration, and end-to-end tests.",
+        snippet: "Software Quality & Assurance: Test Coverage Requirements. Topic 2: Fundamental Test Process and Boundary Analysis."
       },
-      "RHBDANAHAZEEM2025.pdf": {
+      "annual_tax_filing_statement.pdf": {
         category: "Finance",
         target_folder: "Finance/Invoices",
-        standardized_name: "2026-10-23_invoices_rhb_RHBDANAHAZEEM2025.pdf",
-        confidence: 0.85,
-        entity: "rhb",
-        tags: ["finance", "investment", "rhb"],
-        reasoning: "RHB Asset Management financial prospectus and fund statement.",
-        snippet: "RHB Asset Management Berhad. Annual Report & Fund Statement for RHB Dana Hazeem. Net Asset Value (NAV): RM 124,510,000. Manager: Tan Weng Mun."
+        standardized_name: "2026-10-23_invoices_tax_annual-filing-2025.pdf",
+        confidence: 0.95,
+        entity: "tax",
+        tags: ["finance", "tax", "statement"],
+        reasoning: "Official tax statement documentation for annual filing compliance.",
+        snippet: "Annual Tax Assessment and Withholding Statement. Tax Year: 2025. Status: Reconciled. Filed with Regional Revenue Department."
       }
     };
 
@@ -825,7 +825,7 @@
       } else {
         // Virtual sandbox lookup
         const virt = virtualProjections[file.name] || {
-          category: file.name.includes("FYP") ? "Work" : "Documents",
+          category: file.name.endsWith(".pdf") ? "Documents" : "Work",
           target_folder: "Documents/Work",
           standardized_name: `2026-11-02_work_general_${file.name.replace(/[^a-zA-Z0-9_\-\.]/g, '_')}`,
           confidence: 0.85,
@@ -958,15 +958,15 @@
           alert("Error scanning directory: " + err.message);
         }
       } else {
-        // Cloud simulator mode: load simulated student/academic coursework and invoices
+        // Cloud simulator mode: load simulated demonstration dataset
         stagedFiles = [
-          { original_path: "~/Downloads/FYP_proposal_2.pdf", original_name: "FYP proposal 2 _ The revenge of the CompSci Student-3.pdf", target_folder: "Documents/Work", standardized_name: "2026-06-23_work_fyp_FYP_proposal_2.pdf", confidence: 0.85, category: "Work", reasoning: "Final Year Project proposal academic paper", tags: ["fyp", "proposal"] },
-          { original_path: "~/Downloads/KK35403_Mobile_Apps_Week8.pdf", original_name: "KK35403 Mobile Apps Development - Week 8.pdf", target_folder: "Documents/Work", standardized_name: "2026-07-07_work_chin-kim-on_KK35403-W8.pdf", confidence: 0.80, category: "Work", reasoning: "University lecture notes on mobile app architecture", tags: ["coursework", "mobile"] },
-          { original_path: "~/Downloads/BI23110190_Project_Summary.docx", original_name: "BI23110190 Eldion Ryan Project Summary(1).docx", target_folder: "Documents/Work", standardized_name: "2026-03-17_work_bi23110190_project-summary.docx", confidence: 0.85, category: "Work", reasoning: "Software engineering project declaration summary", tags: ["project", "bi23110190"] },
-          { original_path: "~/Downloads/Ej3nAliSeries_archive.torrent", original_name: "Ej3nAliSeries_archive.torrent", target_folder: "Downloads/Torrents", standardized_name: "2026-09-24_downloads_archive_Ej3nAliSeries.torrent", confidence: 1.0, category: "Torrents", reasoning: "Matched exact pattern override rule *.torrent", tags: ["override", "torrent"] },
+          { original_path: "~/Downloads/cloud_architecture_spec.docx", original_name: "cloud_architecture_spec.docx", target_folder: "Documents/Work", standardized_name: "2026-10-23_work_cloud-systems_architecture-spec.docx", confidence: 0.95, category: "Work", reasoning: "Enterprise cloud architecture specification and design document", tags: ["architecture", "spec"] },
+          { original_path: "~/Downloads/mobile_app_design_guide.pdf", original_name: "mobile_app_design_guide.pdf", target_folder: "Documents/Work", standardized_name: "2026-10-07_work_design-systems_mobile-app-guide.pdf", confidence: 0.90, category: "Work", reasoning: "Mobile UI/UX design guideline document", tags: ["design", "mobile"] },
+          { original_path: "~/Downloads/acme_corp_invoice_oct2026.pdf", original_name: "acme_corp_invoice_oct2026.pdf", target_folder: "Finance/Invoices", standardized_name: "2026-10-17_invoices_acme-corp_oct2026-bill.pdf", confidence: 0.98, category: "Finance", reasoning: "Commercial billing invoice with tax ID", tags: ["invoice", "acme"] },
+          { original_path: "~/Downloads/linux_kernel_source_v6.12.torrent", original_name: "linux_kernel_source_v6.12.torrent", target_folder: "Downloads/Torrents", standardized_name: "2026-09-24_downloads_archive_linux-kernel-6.12.torrent", confidence: 1.0, category: "Torrents", reasoning: "Matched exact pattern override rule *.torrent", tags: ["override", "torrent"] },
           { original_path: "~/Downloads/invoice_stripe_march.pdf", original_name: "invoice_stripe_march.pdf", target_folder: "Finance/Invoices", standardized_name: "2026-03-15_invoices_stripe_march-bill.pdf", confidence: 0.98, category: "Finance", reasoning: "Stripe cloud services billing receipt", tags: ["invoice", "stripe"] },
-          { original_path: "~/Downloads/users_training_data.csv", original_name: "users_training_data.csv", target_folder: "Dev/Datasets", standardized_name: "2026-06-25_datasets_food_Food_Tracking_Survey.csv", confidence: 0.85, category: "Datasets", reasoning: "Tabular machine learning dataset with survey responses", tags: ["dataset", "survey"] },
-          { original_path: "~/Downloads/wallpaper_neon_cyberpunk.png", original_name: "wallpaper_neon_cyberpunk.png", target_folder: "Media/Wallpapers", standardized_name: "2026-10-01_wallpapers_chatgpt_cyberpunk.png", confidence: 0.90, category: "Wallpapers", reasoning: "High resolution landscape wallpaper", tags: ["wallpaper", "4k"] }
+          { original_path: "~/Downloads/customer_churn_dataset.csv", original_name: "customer_churn_dataset.csv", target_folder: "Dev/Datasets", standardized_name: "2026-10-24_datasets_analytics_customer-churn.csv", confidence: 0.94, category: "Datasets", reasoning: "Tabular machine learning dataset with customer records", tags: ["dataset", "analytics"] },
+          { original_path: "~/Downloads/abstract_neon_wallpaper.png", original_name: "abstract_neon_wallpaper.png", target_folder: "Media/Wallpapers", standardized_name: "2026-10-01_wallpapers_render_abstract-neon.png", confidence: 0.95, category: "Wallpapers", reasoning: "High resolution landscape wallpaper", tags: ["wallpaper", "4k"] }
         ];
         selectedFileIndices.clear();
         renderStagingTable();
