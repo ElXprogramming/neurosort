@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "neurosort"
+version = "0.1.0"
+description = "Modern, local-first, safe, and intelligent automatic file management daemon and CLI"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "NeuroSort Engineering Team", email = "engineering@neurosort.local" },
+]
+keywords = [
+    "file-management",
+    "organization",
+    "automation",
+    "ai",
+    "local-llm",
+    "ollama",
+    "daemon",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "typer>=0.12.0",
+    "rich>=13.7.0",
+    "watchdog>=4.0.0",
+    "pydantic>=2.7.0",
+    "pyyaml>=6.0.1",
+    "pillow>=10.2.0",
+    "piexif>=1.1.3",
+    "pymupdf>=1.24.0",
+    "python-magic>=0.4.27",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+ocr = [
+    "pytesseract>=0.3.10",
+]
+embeddings = [
+    "fastembed>=0.2.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+neurosort = "neurosort.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["neurosort"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+python_classes = ["Test*"]
