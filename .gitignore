@@ -45,11 +45,8 @@ htmlcov/
 node_modules/
 .next/
 out/
-.vercel/
-
 # Environment & OS
 .env
 .env.local
 .DS_Store
 Thumbs.db
-.vercel

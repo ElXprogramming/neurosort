@@ -450,7 +450,6 @@
       </div>
       <div class="flex items-center space-x-6">
         <a href="https://github.com/ElXprogramming/neurosort" target="_blank" class="hover:text-slate-300 transition">GitHub Repository</a>
-        <a href="https://neurosort-kappa.vercel.app" target="_blank" class="hover:text-slate-300 transition">Vercel Live App</a>
       </div>
     </div>
   </footer>
@@ -468,7 +467,7 @@
     let stagedFiles = [];
     let selectedFileIndices = new Set();
 
-    // Virtual filesystem for Cloud/Vercel demonstration mode
+    // Virtual filesystem fallback for offline sandbox demonstration mode
     const virtualFS = {
       "~": {
         directories: [
@@ -645,6 +644,8 @@
       document.getElementById('connStatusText').textContent = "Interactive Virtual Sandbox";
       document.getElementById('liveBanner').classList.add('hidden');
       browseDirectory("~/Downloads");
+      triggerLiveScan();
+      renderLedger();
     }
 
     // Browse Directory

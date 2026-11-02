@@ -454,12 +454,15 @@ class NeuroSortAPIHandler(BaseHTTPRequestHandler):
 
     def _serve_gui(self) -> None:
         """Serve the interactive web interface."""
-        gui_path = Path(__file__).parent.parent / "public" / "index.html"
-        if gui_path.exists():
-            html = gui_path.read_text(encoding="utf-8")
-        else:
-            html = "<h1>NeuroSort GUI is active</h1>"
-        self._send_html(html)
+        for candidate in [
+            Path(__file__).parent / "ui" / "index.html",
+            Path(__file__).parent.parent / "neurosort" / "ui" / "index.html",
+            Path(__file__).parent.parent / "index.html",
+        ]:
+            if candidate.exists():
+                self._send_html(candidate.read_text(encoding="utf-8"))
+                return
+        self._send_html("<h1>NeuroSort Web Interface</h1><p>GUI index.html not found.</p>")
 
 
 def format_file_size(bytes_num: int) -> str:
