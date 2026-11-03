@@ -1,14 +1,17 @@
 # NeuroSort 🧠📁
 
-> **Modern, local-first, safe, and intelligent automatic file management daemon and CLI.**
+> **Modern, local-first AI file organizer & automatic file sorting daemon powered by Ollama with instant SQLite rollback.**
 
+[![Latest Release](https://img.shields.io/github/v/release/ElXprogramming/neurosort?color=blue)](https://github.com/ElXprogramming/neurosort/releases)
+[![CI](https://github.com/ElXprogramming/neurosort/actions/workflows/ci.yml/badge.svg)](https://github.com/ElXprogramming/neurosort/actions/workflows/ci.yml)
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![AI Engine](https://img.shields.io/badge/AI-Ollama%20%7C%20Llama%203.2%20%7C%20Phi%203.5-purple.svg)](https://ollama.com)
 [![Storage](https://img.shields.io/badge/Ledger-SQLite3%20%28WAL%29-green.svg)](https://sqlite.org)
 [![Security](https://img.shields.io/badge/Privacy-100%25%20Local--First-emerald.svg)](#privacy--zero-data-loss-guarantee)
+[![GitHub Stars](https://img.shields.io/github/stars/ElXprogramming/neurosort?style=social)](https://github.com/ElXprogramming/neurosort/stargazers)
 
-NeuroSort continuously monitors your intake directories (such as `~/Downloads` or `~/Desktop/Inbox`), extracts content metadata from documents, images, and source code, classifies files semantically using local LLMs or custom taxonomy rules, standardizes filenames with customizable naming templates, and organizes files into target directories with **zero data-loss risk** and **instant rollback** via an audit-grade SQLite transaction ledger.
+**NeuroSort** is an intelligent, local-first **AI file organizer** and automated file sorting background daemon. It continuously monitors intake directories (such as `~/Downloads` or `~/Desktop/Inbox`), extracts content metadata from documents, images, and source code, classifies files semantically using local LLMs (Ollama) or custom taxonomy rules, standardizes filenames with customizable naming templates, and organizes files into clean target hierarchies with **zero data-loss risk** and **instant 1-click rollback** via an audit-grade SQLite transaction ledger.
 
 ---
 

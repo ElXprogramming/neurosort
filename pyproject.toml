@@ -14,12 +14,18 @@ authors = [
 ]
 keywords = [
     "file-management",
+    "file-organizer",
+    "file-sorter",
     "organization",
     "automation",
     "ai",
+    "ai-file-organizer",
     "local-llm",
     "ollama",
     "daemon",
+    "smart-folders",
+    "productivity",
+    "sqlite",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
