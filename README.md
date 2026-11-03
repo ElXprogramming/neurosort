@@ -399,4 +399,4 @@ tests/test_watcher.py::test_stabilization_checker_empty_file PASSED      [100%]
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
-Developed by the NeuroSort Engineering Team.
+Developed by Eldion Ryan Godius.

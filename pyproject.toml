@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-    { name = "NeuroSort Engineering Team", email = "engineering@neurosort.local" },
+    { name = "Eldion Ryan Godius", email = "engineering@neurosort.local" },
 ]
 keywords = [
     "file-management",
