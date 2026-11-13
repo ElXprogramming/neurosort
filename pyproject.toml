@@ -27,12 +27,6 @@ keywords = [
     "productivity",
     "sqlite",
 ]
-
-[project.urls]
-Homepage = "https://github.com/ElXprogramming/neurosort"
-Repository = "https://github.com/ElXprogramming/neurosort"
-Issues = "https://github.com/ElXprogramming/neurosort/issues"
-Releases = "https://github.com/ElXprogramming/neurosort/releases"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -61,6 +55,12 @@ dependencies = [
     "python-magic>=0.4.27",
     "httpx>=0.27.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ElXprogramming/neurosort"
+Repository = "https://github.com/ElXprogramming/neurosort"
+Issues = "https://github.com/ElXprogramming/neurosort/issues"
+Releases = "https://github.com/ElXprogramming/neurosort/releases"
 
 [project.optional-dependencies]
 ocr = [
